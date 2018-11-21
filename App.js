@@ -5,14 +5,21 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 //react-redux
-import { Provider } from "react-redux";
-import store from "./app/store.js";
-import Test from "./app/components/MainPage.js";
+// import { Provider } from "react-redux";
+// import store from "./app/store.js";
+// import Test from "./app/components/MainPage.js";
 
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import MainPage from "./app/components/MainPage.js";
 import Login from "./app/components/Login.js";
 // type Props = {};<Props>
+
+// nav routes for the app
+
+// const AuthNavigator = createStackNavigator({
+//   Login: Login,
+//   ForgotPassword: ForgotPasswordScreen
+// });
 
 const AppNavigator = createStackNavigator(
   {
@@ -64,16 +71,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F5FCFF"
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
   }
 });
 //////////////
