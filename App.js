@@ -11,7 +11,15 @@ import MainPage from "./app/components/MainPage.js";
 
 import { createStackNavigator, createAppContainer } from "react-navigation";
 // type Props = {};<Props>
-class App extends Component {
+
+const AppNavigator = createStackNavigator({
+  Home: {
+    screen: MainPage
+  }
+});
+const AppContainer = createAppContainer(AppNavigator);
+
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,21 +41,14 @@ class App extends Component {
     } else {
       return (
         // <Provider store={store}>
-        <View style={styles.container}>
-          <MainPage />
-        </View>
+        <AppContainer />
         // </Provider>
       );
     }
   }
 }
 
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: App
-  }
-});
-export default createAppContainer(AppNavigator);
+// export default createAppContainer(AppNavigator);
 
 ////////////////////
 const styles = StyleSheet.create({
