@@ -3,7 +3,6 @@
 // pull up dev menu = adb shell input keyevent 82 or cmd + M
 // run server = react-native run-android
 
-
 // react-redux implementation
 //react-redux
 // import { Provider } from "react-redux";
@@ -47,10 +46,7 @@ class App extends Component {
         </View>
       );
     } else {
-      return (
-        // <Provider store={store}>
-        // </Provider>
-      );
+      return;
     }
   }
 }

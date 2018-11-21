@@ -5,10 +5,7 @@ export default class CreateAccount extends Component {
   render() {
     return (
       <View>
-        <Button
-          title="CreateAccount"
-          onPress={() => this.props.navigation.navigate("CreateAccount")}
-        />
+        <Text>create account form</Text>
       </View>
     );
   }
