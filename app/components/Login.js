@@ -5,7 +5,7 @@ export default class Login extends Component {
   render() {
     return (
       <View>
-        <Text>Welcome, Login bitch boi</Text>
+        <Text>Welcome,fasdfsdaf bh boi</Text>
         <TextInput placeholder="Username" />
         <TextInput placeholder="Password" />
 

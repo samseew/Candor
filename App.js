@@ -21,16 +21,8 @@ import Login from "./app/components/Login.js";
 //   ForgotPassword: ForgotPasswordScreen
 // });
 
-const AppNavigator = createStackNavigator(
-  {
-    Home: MainPage,
-    Login: Login
-  },
+import { AppNavigator } from "./app/navigator.js";
 
-  {
-    initialRouteName: "Login"
-  }
-);
 const AppContainer = createAppContainer(AppNavigator);
 
 export default class App extends Component {
