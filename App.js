@@ -8,6 +8,8 @@ import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import { Provider } from "react-redux";
 import store from "./app/store.js";
 import MainPage from "./app/components/MainPage.js";
+
+import { createStackNavigator, createAppContainer } from "react-navigation";
 // type Props = {};<Props>
 class App extends Component {
   constructor(props) {
@@ -30,16 +32,22 @@ class App extends Component {
       );
     } else {
       return (
-        <Provider store={store}>
-          <View style={styles.container}>
-            <MainPage />
-          </View>
-        </Provider>
+        // <Provider store={store}>
+        <View style={styles.container}>
+          <MainPage />
+        </View>
+        // </Provider>
       );
     }
   }
 }
-export default App;
+
+const AppNavigator = createStackNavigator({
+  Home: {
+    screen: App
+  }
+});
+export default createAppContainer(AppNavigator);
 
 ////////////////////
 const styles = StyleSheet.create({

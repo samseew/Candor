@@ -4,7 +4,7 @@ import { fetchData } from "../actions/asyncAction.js";
 import { View, Text } from "react-native";
 class MainPage extends Component {
   componentDidMount() {
-    this.props.fetchData();
+    // this.props.fetchData();
   }
   render() {
     return (
@@ -14,15 +14,12 @@ class MainPage extends Component {
     );
   }
 }
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchData: () => {
-      dispatch(fetchData());
-    }
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     fetchData: () => {
+//       dispatch(fetchData());
+//     }
+//   };
+// };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(MainPage);
+export default MainPage;
