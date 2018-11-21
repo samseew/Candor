@@ -1,10 +1,29 @@
 import React, { Component } from "react";
-import { View, Text, Button, TextInput } from "react-native";
+import Image from "./Image";
+import {
+  View,
+  Text,
+  Button,
+  TextInput,
+  Platform,
+  StyleSheet,
+  StatusBar
+} from "react-native";
 export default class Login extends Component {
+  static navigationOptions = {
+    title: "Log in idiot"
+  };
+
   render() {
     return (
-      <View>
-        <Text>Welcome to the worst thing since this shitty framework</Text>
+      <View style={styles.container}>
+        <StatusBar backgroundColor="#1c313a" barStyle="light-content" />
+        <Text style={styles.text}>
+          Welcome to the thing since this shitty framework
+        </Text>
+
+        <Image />
+
         <TextInput placeholder="Username" />
         <TextInput secureTextEntry={true} placeholder="Password" />
         <Button
@@ -23,3 +42,16 @@ export default class Login extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#455a64",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  text: {
+    color: "#ffffff",
+    fontSize: 18
+  }
+});

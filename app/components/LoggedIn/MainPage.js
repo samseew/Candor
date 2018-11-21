@@ -3,6 +3,10 @@ import React, { Component } from "react";
 // import { fetchData } from "../actions/asyncAction.js";
 import { View, Text } from "react-native";
 class MainPage extends Component {
+  static navigationOptions = {
+    header: null
+  };
+
   componentDidMount() {
     // this.props.fetchData();
   }
@@ -14,6 +18,9 @@ class MainPage extends Component {
     );
   }
 }
+
+export default MainPage;
+
 // const mapDispatchToProps = dispatch => {
 //   return {
 //     fetchData: () => {
@@ -21,5 +28,3 @@ class MainPage extends Component {
 //     }
 //   };
 // };
-
-export default MainPage;

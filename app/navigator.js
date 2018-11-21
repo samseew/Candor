@@ -7,6 +7,7 @@ import MainPage from "./components/LoggedIn/MainPage.js";
 import Login from "./components/LoggedOut/Login.js";
 import CreateAccount from "./components/LoggedOut/CreateAccount.js";
 import ForgotPassword from "./components/LoggedOut/ForgotPassword";
+
 const AppNavigator = createStackNavigator({
   Home: MainPage
 });
