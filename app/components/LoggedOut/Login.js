@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Image from "./Image";
+import Logo from "./Logo";
 import {
   View,
   Text,
@@ -19,10 +19,10 @@ export default class Login extends Component {
       <View style={styles.container}>
         <StatusBar backgroundColor="#1c313a" barStyle="light-content" />
         <Text style={styles.text}>
-          Welcome to the thing since this shitty framework
+          Welcome to idiot thing since this shitty framework
         </Text>
 
-        <Image />
+        <Logo />
 
         <TextInput placeholder="Username" />
         <TextInput secureTextEntry={true} placeholder="Password" />
