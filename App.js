@@ -9,7 +9,11 @@ import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 // import store from "./app/store.js";
 // import Test from "./app/components/MainPage.js";
 
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import {
+  createStackNavigator,
+  createAppContainer,
+  createSwitchNavigator
+} from "react-navigation";
 import MainPage from "./app/components/MainPage.js";
 import Login from "./app/components/Login.js";
 // type Props = {};<Props>
@@ -21,11 +25,9 @@ import Login from "./app/components/Login.js";
 //   ForgotPassword: ForgotPasswordScreen
 // });
 
-import { AppNavigator } from "./app/navigator.js";
+import { AppNavigator, SignedOutNavigator } from "./app/navigator.js";
 
-const AppContainer = createAppContainer(AppNavigator);
-
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,15 +49,23 @@ export default class App extends Component {
     } else {
       return (
         // <Provider store={store}>
-        <AppContainer />
         // </Provider>
       );
     }
   }
 }
 
-// export default createAppContainer(AppNavigator);
-
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      SignedIn: AppNavigator,
+      SignedOut: SignedOutNavigator
+    },
+    {
+      initialRouteName: "SignedOut"
+    }
+  )
+);
 ////////////////////
 const styles = StyleSheet.create({
   container: {

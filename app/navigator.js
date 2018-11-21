@@ -1,16 +1,17 @@
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import {
+  createStackNavigator,
+  createAppContainer,
+  createSwitchNavigator
+} from "react-navigation";
 import MainPage from "./components/MainPage.js";
 import Login from "./components/Login.js";
 
-const AppNavigator = createStackNavigator(
-  {
-    Home: MainPage,
-    Login: Login
-  },
+const AppNavigator = createStackNavigator({
+  Home: MainPage
+});
 
-  {
-    initialRouteName: "Login"
-  }
-);
+const SignedOutNavigator = createStackNavigator({
+  Login: Login
+});
 
-export { AppNavigator };
+export { AppNavigator, SignedOutNavigator };
