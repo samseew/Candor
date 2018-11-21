@@ -14,9 +14,16 @@ import MainPage from "./app/components/MainPage.js";
 import Login from "./app/components/Login.js";
 // type Props = {};<Props>
 
-const AppNavigator = createStackNavigator({
-  Home: Login
-});
+const AppNavigator = createStackNavigator(
+  {
+    Home: MainPage,
+    Login: Login
+  },
+
+  {
+    initialRouteName: "Login"
+  }
+);
 const AppContainer = createAppContainer(AppNavigator);
 
 export default class App extends Component {
