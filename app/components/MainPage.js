@@ -9,7 +9,7 @@ class MainPage extends Component {
   render() {
     return (
       <View>
-        <Text>lol</Text>
+        <Text>fuck yu for working</Text>
       </View>
     );
   }

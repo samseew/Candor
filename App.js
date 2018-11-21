@@ -7,15 +7,15 @@ import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 //react-redux
 import { Provider } from "react-redux";
 import store from "./app/store.js";
-import MainPage from "./app/components/MainPage.js";
+import Test from "./app/components/MainPage.js";
 
 import { createStackNavigator, createAppContainer } from "react-navigation";
+import MainPage from "./app/components/MainPage.js";
+import Login from "./app/components/Login.js";
 // type Props = {};<Props>
 
 const AppNavigator = createStackNavigator({
-  Home: {
-    screen: MainPage
-  }
+  Home: Login
 });
 const AppContainer = createAppContainer(AppNavigator);
 
