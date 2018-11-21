@@ -2,23 +2,23 @@
 // debugger = http://localhost:8081/debugger-ui/
 // pull up dev menu = adb shell input keyevent 82 or cmd + M
 // run server = react-native run-android
-import React, { Component } from "react";
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+
+
+// react-redux implementation
 //react-redux
 // import { Provider } from "react-redux";
 // import store from "./app/store.js";
 // import Test from "./app/components/MainPage.js";
 
+import React, { Component } from "react";
+import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import {
   createStackNavigator,
   createAppContainer,
   createSwitchNavigator
 } from "react-navigation";
-import MainPage from "./app/components/MainPage.js";
-import Login from "./app/components/Login.js";
-// type Props = {};<Props>
-
-// nav routes for the app
+import MainPage from "./app/components/LoggedIn/MainPage.js";
+import Login from "./app/components/LoggedOut/Login.js";
 
 // const AuthNavigator = createStackNavigator({
 //   Login: Login,

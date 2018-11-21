@@ -5,9 +5,9 @@ export default class Login extends Component {
   render() {
     return (
       <View>
-        <Text>Welcome,fasdfsdaf bh boi</Text>
+        <Text>Welcome to the worst thing since this shitty framework</Text>
         <TextInput placeholder="Username" />
-        <TextInput placeholder="Password" />
+        <TextInput secureTextEntry={true} placeholder="Password" />
 
         <Button
           title="Login"
