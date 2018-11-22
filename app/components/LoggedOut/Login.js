@@ -7,29 +7,37 @@ import {
   TextInput,
   Platform,
   StyleSheet,
-  StatusBar
+  StatusBar,
+  TouchableOpacity
 } from "react-native";
 export default class Login extends Component {
   static navigationOptions = {
-    title: "Log in idiot"
+    header: null
   };
 
   render() {
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor="#1c313a" barStyle="light-content" />
-        <Text style={styles.text}>
-          Welcome to idiot thing since this shitty framework
-        </Text>
-
         <Logo />
-
-        <TextInput placeholder="Username" />
-        <TextInput secureTextEntry={true} placeholder="Password" />
-        <Button
-          title="Login"
-          onPress={() => this.props.navigation.navigate("Home")}
+        <Text style={styles.text}>CANDOR</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Username"
+          placeholderTextColor="#ffffff"
         />
+        <TextInput
+          style={styles.input}
+          secureTextEntry={true}
+          placeholder="Password"
+          placeholderTextColor="#ffffff"
+        />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => this.props.navigation.navigate("Home")}
+        >
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
         <Button
           title="CreateAccount"
           onPress={() => this.props.navigation.navigate("CreateAccount")}
@@ -38,6 +46,10 @@ export default class Login extends Component {
           title="ForgotPasswordClickHere"
           onPress={() => this.props.navigation.navigate("ForgotPassword")}
         />
+        <View style={styles.signupTextContent}>
+          <Text style={styles.signupText}>Don't have an account yet?</Text>
+          <Text style={styles.signupButton}>Sign Up</Text>
+        </View>
       </View>
     );
   }
@@ -51,7 +63,46 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   text: {
+    color: "rgba(255,255,255,0.7)",
+    fontSize: 18,
+    marginVertical: 0
+  },
+  input: {
+    width: 300,
+    backgroundColor: "rgba(255,255,255,0.3)",
+    borderRadius: 25,
+    paddingHorizontal: 16,
+    fontSize: 16,
     color: "#ffffff",
-    fontSize: 18
+    marginVertical: 10
+  },
+  button: {
+    backgroundColor: "#1c313a",
+    borderRadius: 25,
+    width: 150,
+    marginVertical: 10,
+    paddingVertical: 13
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: "500",
+    color: "#ffffff",
+    textAlign: "center"
+  },
+  signupTextContent: {
+    flexGrow: 1,
+    alignItems: "flex-end",
+    justifyContent: "center",
+    paddingVertical: 16,
+    flexDirection: "row"
+  },
+  signupText: {
+    color: "rgba(255,255,255,0.6)",
+    fontSize: 16
+  },
+  signupButton: {
+    color: "#ffffff",
+    fontSize: 16,
+    fontWeight: "500"
   }
 });

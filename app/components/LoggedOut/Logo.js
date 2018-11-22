@@ -5,8 +5,12 @@ export default class Logo extends Component {
     return (
       <View>
         <Image
-          style={{ width: 40, height: 70 }}
-          source={require("./../../assets/tribal-alphabet-c-typography-logo-template-02-.jpeg")}
+          style={{
+            width: 80,
+            height: 110,
+            marginVertical: -20
+          }}
+          source={require("./../../assets/tribal-alphabet-c-typography-logo-template-02-.png")}
         />
       </View>
     );
