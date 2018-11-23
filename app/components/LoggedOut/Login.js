@@ -19,36 +19,39 @@ export default class Login extends Component {
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor="#1c313a" barStyle="light-content" />
-        <Logo />
-        <Text style={styles.text}>CANDOR</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Username"
-          placeholderTextColor="#ffffff"
-        />
-        <TextInput
-          style={styles.input}
-          secureTextEntry={true}
-          placeholder="Password"
-          placeholderTextColor="#ffffff"
-        />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => this.props.navigation.navigate("Home")}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <Button
-          title="CreateAccount"
-          onPress={() => this.props.navigation.navigate("CreateAccount")}
-        />
-        <Button
-          title="ForgotPasswordClickHere"
-          onPress={() => this.props.navigation.navigate("ForgotPassword")}
-        />
-        <View style={styles.signupTextContent}>
-          <Text style={styles.signupText}>Don't have an account yet?</Text>
-          <Text style={styles.signupButton}>Sign Up</Text>
+
+        <View style={styles.loginContainer}>
+          <Logo />
+          <Text style={styles.text}>CANDOR</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            placeholderTextColor="#ffffff"
+          />
+          <TextInput
+            style={styles.input}
+            secureTextEntry={true}
+            placeholder="Password"
+            placeholderTextColor="#ffffff"
+          />
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.props.navigation.navigate("Home")}
+          >
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+          <Button
+            title="CreateAccount"
+            onPress={() => this.props.navigation.navigate("CreateAccount")}
+          />
+          <Button
+            title="ForgotPasswordClickHere"
+            onPress={() => this.props.navigation.navigate("ForgotPassword")}
+          />
+          <View style={styles.signupTextContent}>
+            <Text style={styles.signupText}>Don't have an account yet?</Text>
+            <Text style={styles.signupButton}>Sign Up</Text>
+          </View>
         </View>
       </View>
     );
@@ -91,7 +94,6 @@ const styles = StyleSheet.create({
   },
   signupTextContent: {
     flexGrow: 1,
-    alignItems: "flex-end",
     justifyContent: "center",
     paddingVertical: 16,
     flexDirection: "row"
@@ -104,5 +106,11 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     fontSize: 16,
     fontWeight: "500"
+  },
+  loginContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 60
   }
 });

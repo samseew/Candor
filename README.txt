@@ -60,16 +60,16 @@ App
 |_User Login (Token = False)
 |_User Main Page (Token = True)
     |_ Nav
-        |_ LogOut Button
         |_Side Nav
             |_Favorited Coupons
             |_ Settings 
                 |_Profile
                 |_Default Settings
+            |_ LogOut Button
+
     |_Search Container
         |_Search Input
         |_Filters 
-        |_ Current Store Location
     |_ Item Container
         |_Items List
             |_Item (preview of deal/exp date/photo preview)

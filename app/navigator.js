@@ -1,15 +1,18 @@
 import {
   createStackNavigator,
   createAppContainer,
-  createSwitchNavigator
+  createSwitchNavigator,
+  createDrawerNavigator
 } from "react-navigation";
 import MainPage from "./components/LoggedIn/MainPage.js";
 import Login from "./components/LoggedOut/Login.js";
 import CreateAccount from "./components/LoggedOut/CreateAccount.js";
 import ForgotPassword from "./components/LoggedOut/ForgotPassword";
+import Settings from "./components/LoggedIn/Settings";
 
 const AppNavigator = createStackNavigator({
-  Home: MainPage
+  Home: MainPage,
+  Drawer: Settings
 });
 
 const SignedOutNavigator = createStackNavigator({
@@ -18,4 +21,10 @@ const SignedOutNavigator = createStackNavigator({
   ForgotPassword: ForgotPassword
 });
 
-export { AppNavigator, SignedOutNavigator };
+const DrawerNavigator = createStackNavigator({
+  Settings: {
+    screen: Settings
+  }
+});
+
+export { AppNavigator, SignedOutNavigator, DrawerNavigator };

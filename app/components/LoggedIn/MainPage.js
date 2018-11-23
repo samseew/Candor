@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import { fetchData } from "../actions/asyncAction.js";
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
 class MainPage extends Component {
   static navigationOptions = {
-    header: null
+    headerLeft: <Button title="..." onPress={() => alert("lel")} />
   };
 
   componentDidMount() {
@@ -13,7 +13,7 @@ class MainPage extends Component {
   render() {
     return (
       <View>
-        <Text>fuck yu for working</Text>
+        <Text>fuck yoou for workng</Text>
       </View>
     );
   }
