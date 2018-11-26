@@ -16,7 +16,7 @@ class DrawerContainer extends Component {
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("Drawer")}
           >
-            <Icon name="cog"> </Icon>
+            <Icon name="settings"> </Icon>
           </TouchableOpacity>
         </View>
       </View>

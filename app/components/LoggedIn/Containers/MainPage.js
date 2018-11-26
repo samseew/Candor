@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     flexDirection: "row",
-    flex: 9
+    flex: 10
   }
 });
 

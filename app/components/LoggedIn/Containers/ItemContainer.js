@@ -5,7 +5,7 @@ import { Icon } from "native-base";
 export default class ItemContainer extends Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: "orange" }}>
         <Item />
       </View>
     );

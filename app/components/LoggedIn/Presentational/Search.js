@@ -21,7 +21,6 @@ export default class Search extends Component {
 
 const styles = StyleSheet.create({
   Search: {
-    backgroundColor: "green",
     flexDirection: "row"
   },
   Input: {
