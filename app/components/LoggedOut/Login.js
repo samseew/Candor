@@ -10,50 +10,62 @@ import {
   StatusBar,
   TouchableOpacity
 } from "react-native";
+import HandleBack from "../../HandleBack";
+
 export default class Login extends Component {
   static navigationOptions = {
     header: null
   };
 
+  onBack = () => {
+    return false; // false = android button click goes back a screen,
+    //set to true to disable android back button
+  };
+
   render() {
     return (
-      <View style={styles.container}>
-        <StatusBar backgroundColor="#1c313a" barStyle="light-content" />
+      <HandleBack onBack={this.onBack}>
+        <View style={styles.container}>
+          <StatusBar backgroundColor="#1c313a" barStyle="light-content" />
 
-        <View style={styles.loginContainer}>
-          <Logo />
-          <Text style={styles.text}>CANDOR</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Email"
-            placeholderTextColor="#ffffff"
-          />
-          <TextInput
-            style={styles.input}
-            secureTextEntry={true}
-            placeholder="Password"
-            placeholderTextColor="#ffffff"
-          />
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => this.props.navigation.navigate("Home")}
-          >
-            <Text style={styles.buttonText}>Login</Text>
-          </TouchableOpacity>
-          <Button
-            title="CreateAccount"
-            onPress={() => this.props.navigation.navigate("CreateAccount")}
-          />
-          <Button
-            title="ForgotPasswordClickHere"
-            onPress={() => this.props.navigation.navigate("ForgotPassword")}
-          />
-          <View style={styles.signupTextContent}>
-            <Text style={styles.signupText}>Don't have an account yet?</Text>
-            <Text style={styles.signupButton}>Sign Up</Text>
+          <View style={styles.loginContainer}>
+            <Logo />
+            <Text style={styles.text}>CANDOR</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Email"
+              placeholderTextColor="#ffffff"
+            />
+            <TextInput
+              style={styles.input}
+              secureTextEntry={true}
+              placeholder="Password"
+              placeholderTextColor="#ffffff"
+            />
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.props.navigation.navigate("Home")}
+            >
+              <Text style={styles.buttonText}>Login</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("ForgotPassword")}
+            >
+              <Text style={styles.buttonText}>Forgot Password</Text>
+            </TouchableOpacity>
+
+            <View style={styles.signupTextContent}>
+              <Text style={styles.signupText}>Don't have an account yet?</Text>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("CreateAccount")}
+              >
+                <Text style={styles.signupButton}>Sign Up</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
-      </View>
+      </HandleBack>
     );
   }
 }
