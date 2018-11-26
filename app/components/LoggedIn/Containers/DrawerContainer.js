@@ -27,7 +27,10 @@ class DrawerContainer extends Component {
             <Logo />
           </View>
         </View>
-        <Button transparent onPress={() => console.log("lmao it wokred")}>
+        <Button
+          transparent
+          onPress={() => this.props.navigation.navigate("AdvancedSearch")}
+        >
           <Icon name="search" />
         </Button>
       </View>

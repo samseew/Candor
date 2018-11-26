@@ -10,11 +10,13 @@ import CreateAccount from "./components/LoggedOut/CreateAccount.js";
 import ForgotPassword from "./components/LoggedOut/ForgotPassword";
 import Drawer from "./components/LoggedIn/Presentational/Drawer";
 import Settings from "./components/LoggedIn/Presentational/Settings";
+import AdvancedSearch from "./components/LoggedIn/Presentational/AdvancedSearch";
 
 const AppNavigator = createStackNavigator({
   Home: MainPage,
   Drawer: Drawer,
-  Settings: Settings
+  Settings: Settings,
+  AdvancedSearch: AdvancedSearch
 });
 
 const SignedOutNavigator = createStackNavigator({
