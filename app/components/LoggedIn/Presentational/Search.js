@@ -1,17 +1,28 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View, TextInput, Button } from "react-native";
+import { Container, Header, Content, Form, Item, Input } from "native-base";
 
 export default class Search extends Component {
+  constructor() {
+    super();
+    this.state = {
+      searchTerm: ""
+    };
+  }
+
   render() {
     return (
       <View>
         <View style={styles.Search}>
-          <TextInput style={styles.Input} placeholder="Search Coupons" />
+          <TextInput
+            onChangeText={text => this.setState({ searchTerm: text })}
+            style={styles.Input}
+            placeholder="Search Coupons"
+            value={this.state.searchTerm}
+          />
           <Button
             title="Search"
-            onPress={() => {
-              console.log("pressed");
-            }}
+            onPress={() => this.props.handleSearch(this.state.searchTerm)}
           />
         </View>
       </View>

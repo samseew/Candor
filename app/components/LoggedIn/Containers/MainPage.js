@@ -11,6 +11,12 @@ class MainPage extends Component {
     header: null
   };
 
+  constructor() {
+    super();
+    this.state = {
+      query: null
+    };
+  }
   componentDidMount() {
     // this.props.fetchData();
   }
@@ -20,6 +26,11 @@ class MainPage extends Component {
     //set to true to disable android back button
   };
 
+  handleSearch = term => {
+    this.setState({
+      query: term
+    });
+  };
   render() {
     return (
       <HandleBack onBack={this.onBack}>
@@ -28,10 +39,10 @@ class MainPage extends Component {
             <DrawerContainer navigation={this.props.navigation} />
           </View>
           <View style={styles.searchContainer}>
-            <SearchContainer />
+            <SearchContainer handleSearch={this.handleSearch} />
           </View>
           <View style={styles.itemContainer}>
-            <ItemContainer />
+            <ItemContainer query={this.state.query} />
           </View>
         </View>
       </HandleBack>

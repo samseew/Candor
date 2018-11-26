@@ -5,7 +5,7 @@ export default class SearchContainer extends Component {
   render() {
     return (
       <View style={{ flex: 1, backgroundColor: "red" }}>
-        <Search />
+        <Search handleSearch={this.props.handleSearch} />
       </View>
     );
   }

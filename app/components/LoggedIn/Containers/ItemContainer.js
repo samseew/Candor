@@ -28,6 +28,7 @@ export default class ItemContainer extends Component {
         </View>
       );
     } else {
+      console.log(this.props.query);
       return (
         <Container>
           <Content>
