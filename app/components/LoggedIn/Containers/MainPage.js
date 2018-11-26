@@ -2,10 +2,12 @@ import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import { fetchData } from "../actions/asyncAction.js";
 import { View, Text, Button } from "react-native";
-import HandleBack from "../../HandleBack";
-
+import HandleBack from "../../../HandleBack";
+import DrawerContainer from "./DrawerContainer";
 class MainPage extends Component {
-  static navigationOptions = {};
+  static navigationOptions = {
+    header: null
+  };
 
   componentDidMount() {
     // this.props.fetchData();
@@ -19,12 +21,12 @@ class MainPage extends Component {
   render() {
     return (
       <HandleBack onBack={this.onBack}>
+        <DrawerContainer navigation={this.props.navigation} />
+        {/* <SearchContainer />
+
+        <ItemContainer /> */}
         <View>
-          <Button
-            title="click"
-            onPress={() => this.props.navigation.navigate("Drawer")}
-          />
-          <Text>fuck y</Text>
+          <Text>fuck me in the</Text>
         </View>
       </HandleBack>
     );
