@@ -44,7 +44,7 @@ export default MainPage;
 const styles = StyleSheet.create({
   drawerContainer: {
     flexDirection: "row",
-    flex: 1
+    flex: 1.5
   },
   searchContainer: {
     flexDirection: "row",
