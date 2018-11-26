@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
-import Item from "../Presentational/Item";
-import { Icon } from "native-base";
-export default class ItemContainer extends Component {
+
+export default class Item extends Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <Item />
+      <View>
+        <Text> this is an item </Text>
       </View>
     );
   }
