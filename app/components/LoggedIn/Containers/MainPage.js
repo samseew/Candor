@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import { fetchData } from "../actions/asyncAction.js";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, StyleSheet } from "react-native";
 import HandleBack from "../../../HandleBack";
 import DrawerContainer from "./DrawerContainer";
+import SearchContainer from "./SearchContainer";
+import ItemContainer from "./ItemContainer";
 class MainPage extends Component {
   static navigationOptions = {
     header: null
@@ -21,12 +23,16 @@ class MainPage extends Component {
   render() {
     return (
       <HandleBack onBack={this.onBack}>
-        <DrawerContainer navigation={this.props.navigation} />
-        {/* <SearchContainer />
-
-        <ItemContainer /> */}
-        <View>
-          <Text>fuck me in the</Text>
+        <View style={{ flex: 1 }}>
+          <View style={styles.drawerContainer}>
+            <DrawerContainer navigation={this.props.navigation} />
+          </View>
+          <View style={styles.searchContainer}>
+            <SearchContainer />
+          </View>
+          <View style={styles.itemContainer}>
+            <ItemContainer />
+          </View>
         </View>
       </HandleBack>
     );
@@ -34,6 +40,21 @@ class MainPage extends Component {
 }
 
 export default MainPage;
+
+const styles = StyleSheet.create({
+  drawerContainer: {
+    flexDirection: "row",
+    flex: 1
+  },
+  searchContainer: {
+    flexDirection: "row",
+    flex: 1
+  },
+  itemContainer: {
+    flexDirection: "row",
+    flex: 9
+  }
+});
 
 // const mapDispatchToProps = dispatch => {
 //   return {

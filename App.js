@@ -16,7 +16,7 @@ import {
   createAppContainer,
   createSwitchNavigator
 } from "react-navigation";
-import MainPage from "./app/components/LoggedIn/MainPage.js";
+import MainPage from "./app/components/LoggedIn/Containers/MainPage.js";
 import Login from "./app/components/LoggedOut/Login.js";
 
 // const AuthNavigator = createStackNavigator({
