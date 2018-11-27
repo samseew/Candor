@@ -3,11 +3,11 @@ import React, { Component } from "react";
 // import { fetchData } from "../actions/asyncAction.js";
 import { View, Text, Button, StyleSheet } from "react-native";
 import HandleBack from "../../../HandleBack";
-import DrawerContainer from "./DrawerContainer";
+import NavContainer from "./NavContainer";
 import SearchContainer from "./SearchContainer";
 import ItemContainer from "./ItemContainer";
 import { Drawer, Container } from "native-base";
-import SideDrawer from "../Presentational/SideDrawer";
+import SideDrawer from "./SideDrawer";
 class MainPage extends Component {
   static navigationOptions = {
     header: null
@@ -58,7 +58,7 @@ class MainPage extends Component {
         >
           <View style={{ flex: 1 }}>
             <View style={styles.drawerContainer}>
-              <DrawerContainer
+              <NavContainer
                 navigation={this.props.navigation}
                 openDrawer={() => openDrawer()}
               />

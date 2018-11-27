@@ -3,7 +3,7 @@ import MainPage from "./components/LoggedIn/Containers/MainPage.js";
 import Login from "./components/LoggedOut/Login.js";
 import CreateAccount from "./components/LoggedOut/CreateAccount.js";
 import ForgotPassword from "./components/LoggedOut/ForgotPassword";
-import SideDrawer from "./components/LoggedIn/Presentational/SideDrawer";
+import SideDrawer from "./components/LoggedIn/Containers/SideDrawer";
 import Settings from "./components/LoggedIn/Presentational/Settings";
 import AdvancedSearch from "./components/LoggedIn/Presentational/AdvancedSearch";
 import ItemDetails from "./components/LoggedIn/Presentational/ItemDetails";

@@ -77,3 +77,26 @@ App
                          with other stores/chains?)
 
     ///////////
+
+
+
+
+
+
+
+
+    ##
+    lots of styling 
+    - cards,
+    - card details 
+    - main page 
+    token auth  
+    - create new acc 
+    - reset password to email 
+    - auth0?
+    advanced search 
+    - location 
+    - category 
+
+    -scrolling down renders new items 
+    

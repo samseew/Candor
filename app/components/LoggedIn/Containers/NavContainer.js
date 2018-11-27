@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // import { fetchData } from "../actions/asyncAction.js";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Icon, Button } from "native-base";
-import Logo from "../../../components/LoggedOut/Logo.js";
+import Logo from "../../LoggedOut/Logo.js";
 
 class DrawerContainer extends Component {
   componentDidMount() {
