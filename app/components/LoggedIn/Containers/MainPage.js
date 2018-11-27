@@ -52,9 +52,6 @@ class MainPage extends Component {
         onClose={() => closeDrawer()}
       >
         <HandleBack onBack={this.onBack}>
-          <View>
-            <Button title="drawer" onPress={() => openDrawer()} />
-          </View>
           <View style={{ flex: 1 }}>
             <View style={styles.drawerContainer}>
               <DrawerContainer
