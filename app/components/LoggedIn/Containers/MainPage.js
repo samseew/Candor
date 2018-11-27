@@ -20,7 +20,7 @@ class MainPage extends Component {
     };
   }
   componentDidMount() {
-    // this.props.fetchData();
+    // Drawer.defaultProps.styles.mainOverlay.elevation = 0;
   }
 
   onBack = () => {
@@ -33,15 +33,13 @@ class MainPage extends Component {
       query: term
     });
   };
+  closeDrawer = () => {
+    this.drawer._root.close();
+  };
+  openDrawer = () => {
+    this.drawer._root.open();
+  };
   render() {
-    closeDrawer = () => {
-      this.drawer._root.close();
-    };
-    openDrawer = () => {
-      this.drawer._root.open();
-    };
-    Drawer.defaultProps.styles.mainOverlay.elevation = 0;
-
     return (
       <HandleBack onBack={this.onBack}>
         <Drawer
@@ -54,13 +52,13 @@ class MainPage extends Component {
               navigation={this.props.navigation}
             />
           }
-          onClose={() => closeDrawer()}
+          onClose={() => this.closeDrawer()}
         >
           <View style={{ flex: 1 }}>
             <View style={styles.drawerContainer}>
               <NavContainer
                 navigation={this.props.navigation}
-                openDrawer={() => openDrawer()}
+                openDrawer={() => this.openDrawer()}
               />
             </View>
             <View style={styles.searchContainer}>
