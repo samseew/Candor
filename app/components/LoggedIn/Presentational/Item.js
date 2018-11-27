@@ -18,13 +18,15 @@ import {
 export default class Item extends Component {
   render() {
     return (
-      <Card>
+      <Card style={styles.Card}>
         <CardItem>
           <Left>
             <Thumbnail source={{ uri: this.props.deal.image_url }} />
             <Body>
               <Text>{this.props.deal.title}</Text>
-              <Text note>{this.props.deal.description}</Text>
+              <Text note numberOfLines={5} ellipsizeMode="tail">
+                {this.props.deal.description}
+              </Text>
             </Body>
           </Left>
         </CardItem>
@@ -33,4 +35,6 @@ export default class Item extends Component {
   }
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  Card: {}
+});
