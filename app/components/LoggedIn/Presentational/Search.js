@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View, TextInput, Button } from "react-native";
-import { Container, Header, Content, Form, Item, Input } from "native-base";
+import { Container, Header, Content, Item, Input } from "native-base";
 
 export default class Search extends Component {
   constructor() {
@@ -19,6 +19,9 @@ export default class Search extends Component {
             style={styles.Input}
             placeholder="Search Coupons"
             value={this.state.searchTerm}
+            onSubmitEditing={() =>
+              this.props.handleSearch(this.state.searchTerm)
+            }
           />
           <Button
             title="Search"

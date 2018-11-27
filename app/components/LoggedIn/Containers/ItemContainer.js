@@ -28,12 +28,37 @@ export default class ItemContainer extends Component {
       .then(res => res.json())
       .then(data => this.setState({ items: data.deals, isLoading: false }));
   }
+
+  queryFetch = query => {
+    fetch(dealsURL + `?query=${query}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        api_key: Key
+      }
+    })
+      .then(res => res.json())
+      .then(data => this.setState({ items: data.deals }));
+  };
   render() {
     if (this.state.isLoading) {
       return (
         <View style={styles.container}>
           <ActivityIndicator />
         </View>
+      );
+    } else if (this.props.query) {
+      {
+        this.queryFetch(this.props.query);
+      }
+      return (
+        <Container>
+          <Content>
+            {this.state.items.map(deal => {
+              return <Item id={deal.deal.id} deal={deal.deal} />;
+            })}
+          </Content>
+        </Container>
       );
     } else {
       return (
