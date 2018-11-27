@@ -21,7 +21,8 @@ export default class ItemDetails extends Component {
     return (
       <Container>
         <Content>
-          <Text>{this.props.navigation.getParam("item").title}</Text>
+          <Text>lol</Text>
+          {/* <Text>{this.props.navigation.getParam("item").title}</Text> */}
         </Content>
       </Container>
     );

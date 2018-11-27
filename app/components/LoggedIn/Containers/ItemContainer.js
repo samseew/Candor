@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, ActivityIndicator } from "react-native";
 import Item from "../Presentational/Item";
 import { Icon, Container, Content, Text, Card } from "native-base";
+import { StackActions, NavigationActions } from "react-navigation";
 
 const Key = "OvTrWbUT";
 const dealsURL = "https://api.discountapi.com/v2/deals";
@@ -9,6 +10,16 @@ const dealsURL = "https://api.discountapi.com/v2/deals";
 //  example Api Call - query, location (latitude, longitude), results per page and page number
 // https://api.discountapi.com/v2/deals?query=adult&location=39.151958,-84.477405&per_page=30&page=1
 
+//memory leak
+// const resetAction = StackActions.reset({
+//   index: 0,
+//   actions: [
+//     NavigationActions.navigate({
+//       routeName: "Home"
+//     })
+//   ]
+// });
+// this.props.navigation.dispatch(resetAction);
 export default class ItemContainer extends Component {
   constructor(props) {
     super(props);
@@ -38,7 +49,9 @@ export default class ItemContainer extends Component {
       }
     })
       .then(res => res.json())
-      .then(data => this.setState({ items: data.deals }));
+      .then(data => {
+        this.setState({ items: data.deals });
+      });
   };
   render() {
     if (this.state.isLoading) {

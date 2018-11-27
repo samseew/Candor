@@ -99,4 +99,4 @@ App
     - category 
 
     -scrolling down renders new items 
-    
+    -drag down rerenders the item container

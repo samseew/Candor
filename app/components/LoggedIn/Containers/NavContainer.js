@@ -13,7 +13,11 @@ class DrawerContainer extends Component {
   render() {
     return (
       <View
-        style={{ backgroundColor: "yellow", flex: 1, flexDirection: "row" }}
+        style={{
+          backgroundColor: "#9eb0d5",
+          flex: 1,
+          flexDirection: "row"
+        }}
       >
         <View style={styles.Icon}>
           <TouchableOpacity onPress={() => this.props.openDrawer()}>
@@ -45,14 +49,11 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   TitleBox: {
-    backgroundColor: "white",
     flex: 9,
     alignItems: "center",
     right: "20%"
   },
-  Logo: {
-    backgroundColor: "green"
-  }
+  Logo: {}
 });
 // const mapDispatchToProps = dispatch => {
 //   return {
