@@ -6,6 +6,8 @@ import HandleBack from "../../../HandleBack";
 import DrawerContainer from "./DrawerContainer";
 import SearchContainer from "./SearchContainer";
 import ItemContainer from "./ItemContainer";
+import { Drawer, Container } from "native-base";
+import SideDrawer from "../Presentational/SideDrawer";
 class MainPage extends Component {
   static navigationOptions = {
     header: null
@@ -32,23 +34,46 @@ class MainPage extends Component {
     });
   };
   render() {
+    Drawer.defaultProps.styles.mainOverlay.elevation = 0;
+
+    closeDrawer = () => {
+      this.drawer._root.close();
+    };
+    openDrawer = () => {
+      this.drawer._root.open();
+    };
+
     return (
-      <HandleBack onBack={this.onBack}>
-        <View style={{ flex: 1 }}>
-          <View style={styles.drawerContainer}>
-            <DrawerContainer navigation={this.props.navigation} />
+      <Drawer
+        ref={ref => {
+          this.drawer = ref;
+        }}
+        content={<SideDrawer navigator={this.navigator} />}
+        onClose={() => closeDrawer()}
+      >
+        <HandleBack onBack={this.onBack}>
+          <View>
+            <Button title="drawer" onPress={() => openDrawer()} />
           </View>
-          <View style={styles.searchContainer}>
-            <SearchContainer handleSearch={this.handleSearch} />
+          <View style={{ flex: 1 }}>
+            <View style={styles.drawerContainer}>
+              <DrawerContainer
+                navigation={this.props.navigation}
+                openDrawer={() => openDrawer()}
+              />
+            </View>
+            <View style={styles.searchContainer}>
+              <SearchContainer handleSearch={this.handleSearch} />
+            </View>
+            <View style={styles.itemContainer}>
+              <ItemContainer
+                query={this.state.query}
+                navigation={this.props.navigation}
+              />
+            </View>
           </View>
-          <View style={styles.itemContainer}>
-            <ItemContainer
-              query={this.state.query}
-              navigation={this.props.navigation}
-            />
-          </View>
-        </View>
-      </HandleBack>
+        </HandleBack>
+      </Drawer>
     );
   }
 }

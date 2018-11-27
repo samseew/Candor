@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { createAppContainer } from "react-navigation";
 import { View, Text, Stylesheet, Button } from "react-native";
 import { Icon, Container, Header, Content, Left } from "native-base";
-class Drawer extends Component {
+class SideDrawer extends Component {
   static navigationOptions = {
     title: "My Drawer"
   };
@@ -20,4 +20,4 @@ class Drawer extends Component {
     );
   }
 }
-export default Drawer;
+export default SideDrawer;

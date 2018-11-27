@@ -16,9 +16,7 @@ class DrawerContainer extends Component {
         style={{ backgroundColor: "yellow", flex: 1, flexDirection: "row" }}
       >
         <View style={styles.Icon}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Drawer")}
-          >
+          <TouchableOpacity onPress={() => this.props.openDrawer()}>
             <Icon name="menu" />
           </TouchableOpacity>
         </View>
