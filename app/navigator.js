@@ -11,12 +11,13 @@ import ForgotPassword from "./components/LoggedOut/ForgotPassword";
 import Drawer from "./components/LoggedIn/Presentational/Drawer";
 import Settings from "./components/LoggedIn/Presentational/Settings";
 import AdvancedSearch from "./components/LoggedIn/Presentational/AdvancedSearch";
-
+import ItemDetails from "./components/LoggedIn/Presentational/ItemDetails";
 const AppNavigator = createStackNavigator({
   Home: MainPage,
   Drawer: Drawer,
   Settings: Settings,
-  AdvancedSearch: AdvancedSearch
+  AdvancedSearch: AdvancedSearch,
+  ItemDetails: ItemDetails
 });
 
 const SignedOutNavigator = createStackNavigator({

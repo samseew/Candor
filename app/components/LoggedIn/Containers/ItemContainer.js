@@ -38,13 +38,13 @@ export default class ItemContainer extends Component {
       }
     })
       .then(res => res.json())
-      .then(data => this.setState({ items: data.deals }));
+      .then(data => this.setState({ items: data.deals, isLoading: false }));
   };
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={styles.container}>
-          <ActivityIndicator />
+        <View style={styles.Activity}>
+          <ActivityIndicator size="large" />
         </View>
       );
     } else if (this.props.query) {
@@ -74,4 +74,9 @@ export default class ItemContainer extends Component {
   }
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  Activity: {
+    flex: 1,
+    justifyContent: "center"
+  }
+});
