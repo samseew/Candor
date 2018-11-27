@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { StyleSheet, View, ActivityIndicator } from "react-native";
 import Item from "../Presentational/Item";
-import { Icon, Container, Content, Text } from "native-base";
+import { Icon, Container, Content, Text, Card } from "native-base";
 
 const Key = "OvTrWbUT";
+const dealsURL = "https://api.discountapi.com/v2/deals";
 
 //  example Api Call - query, location (latitude, longitude), results per page and page number
 // https://api.discountapi.com/v2/deals?query=adult&location=39.151958,-84.477405&per_page=30&page=1
@@ -12,13 +13,20 @@ export default class ItemContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true
+      isLoading: true,
+      items: null
     };
   }
   componentDidMount() {
-    this.setState({
-      isLoading: false
-    });
+    fetch(dealsURL, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        api_key: Key
+      }
+    })
+      .then(res => res.json())
+      .then(data => this.setState({ items: data.deals, isLoading: false }));
   }
   render() {
     if (this.state.isLoading) {
@@ -28,12 +36,12 @@ export default class ItemContainer extends Component {
         </View>
       );
     } else {
-      console.log(this.props.query);
       return (
         <Container>
           <Content>
-            <Text>lmao items</Text>
-            <Item />
+            {this.state.items.map(deal => {
+              return <Item id={deal.deal.id} deal={deal.deal} />;
+            })}
           </Content>
         </Container>
       );

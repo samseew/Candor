@@ -1,12 +1,34 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
+import {
+  Container,
+  Header,
+  Content,
+  Card,
+  CardItem,
+  Thumbnail,
+  Text,
+  Button,
+  Icon,
+  Left,
+  Body,
+  Right
+} from "native-base";
 
 export default class Item extends Component {
   render() {
     return (
-      <View>
-        <Text> this is an item </Text>
-      </View>
+      <Card>
+        <CardItem>
+          <Left>
+            <Thumbnail source={{ uri: this.props.deal.image_url }} />
+            <Body>
+              <Text>{this.props.deal.title}</Text>
+              <Text note>{this.props.deal.description}</Text>
+            </Body>
+          </Left>
+        </CardItem>
+      </Card>
     );
   }
 }
