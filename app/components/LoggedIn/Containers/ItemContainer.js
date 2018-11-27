@@ -38,7 +38,7 @@ export default class ItemContainer extends Component {
       }
     })
       .then(res => res.json())
-      .then(data => this.setState({ items: data.deals, isLoading: false }));
+      .then(data => this.setState({ items: data.deals }));
   };
   render() {
     if (this.state.isLoading) {
@@ -55,7 +55,13 @@ export default class ItemContainer extends Component {
         <Container>
           <Content>
             {this.state.items.map(deal => {
-              return <Item id={deal.deal.id} deal={deal.deal} />;
+              return (
+                <Item
+                  id={deal.deal.id}
+                  deal={deal.deal}
+                  navigation={this.props.navigation}
+                />
+              );
             })}
           </Content>
         </Container>

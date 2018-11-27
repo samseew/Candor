@@ -9,6 +9,8 @@ import ItemContainer from "./ItemContainer";
 import { Drawer, Container } from "native-base";
 import SideDrawer from "./SideDrawer";
 class MainPage extends Component {
+  // drawer brightness bug = change elevation to 0
+  //nativebase/dist/src/basic/Drawer/index.js
   static navigationOptions = {
     header: null
   };
@@ -18,9 +20,6 @@ class MainPage extends Component {
     this.state = {
       query: null
     };
-  }
-  componentDidMount() {
-    // Drawer.defaultProps.styles.mainOverlay.elevation = 0;
   }
 
   onBack = () => {

@@ -14,8 +14,19 @@ import {
   Body,
   Right
 } from "native-base";
+import { StackActions, NavigationActions } from "react-navigation";
 
+const resetAction = StackActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: "Profile" })]
+});
+this.props.navigation.dispatch(resetAction);
 export default class Item extends Component {
+  // onPress={() =>
+  //   this.props.navigation.navigate("ItemDetails", {
+  //     id: this.props.id,
+  //     item: this.props.deal
+  //   })
   render() {
     return (
       <TouchableOpacity
