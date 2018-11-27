@@ -7,6 +7,17 @@ export default class ItemDetails extends Component {
     // to get item props = this.props.navigation.getParam('item')
     // id = this.props.navigation.getParam('id')
 
+    // .title
+    //.description
+    //.image_url
+    //.fine_print
+    //.merchant.name
+    //.merchant.address
+    //.merchant.postal_code
+    //.merchant.region (state)
+    //.merchant.country
+    //.url
+
     return (
       <Container>
         <Content>
