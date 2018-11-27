@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Logo from "./Logo";
+import BackgroundPicture from "../../assets/photo-1524169113253-c6ba17f68498.jpeg";
 import {
   View,
   Text,
@@ -8,7 +9,8 @@ import {
   Platform,
   StyleSheet,
   StatusBar,
-  TouchableOpacity
+  TouchableOpacity,
+  ImageBackground
 } from "react-native";
 import HandleBack from "../../HandleBack";
 
@@ -25,46 +27,56 @@ export default class Login extends Component {
   render() {
     return (
       <HandleBack onBack={this.onBack}>
-        <View style={styles.container}>
-          <StatusBar backgroundColor="#1c313a" barStyle="light-content" />
+        <ImageBackground
+          source={BackgroundPicture}
+          style={{ width: "100%", height: "100%" }}
+        >
+          <View style={styles.container}>
+            <StatusBar backgroundColor="#1c313a" barStyle="light-content" />
 
-          <View style={styles.loginContainer}>
-            <Logo />
-            <Text style={styles.text}>CANDOR</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Email"
-              placeholderTextColor="#ffffff"
-            />
-            <TextInput
-              style={styles.input}
-              secureTextEntry={true}
-              placeholder="Password"
-              placeholderTextColor="#ffffff"
-            />
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this.props.navigation.navigate("Home")}
-            >
-              <Text style={styles.buttonText}>Login</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("ForgotPassword")}
-            >
-              <Text style={styles.buttonText}>Forgot Password</Text>
-            </TouchableOpacity>
-
-            <View style={styles.signupTextContent}>
-              <Text style={styles.signupText}>Don't have an account yet?</Text>
+            <View style={styles.loginContainer}>
+              <Logo />
+              <Text style={styles.text}>CANDOR</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Email"
+                placeholderTextColor="black"
+              />
+              <TextInput
+                style={styles.input}
+                secureTextEntry={true}
+                placeholder="Password"
+                placeholderTextColor="black"
+              />
               <TouchableOpacity
-                onPress={() => this.props.navigation.navigate("CreateAccount")}
+                style={styles.button}
+                onPress={() => this.props.navigation.navigate("Home")}
               >
-                <Text style={styles.signupButton}>Sign Up</Text>
+                <Text style={styles.buttonText}>Login</Text>
               </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("ForgotPassword")}
+              >
+                <Text style={styles.buttonText}>Forgot Password</Text>
+              </TouchableOpacity>
+
+              <View style={styles.signupTextContent}>
+                <Text style={styles.signupText}>
+                  Don't have an account yet?
+                </Text>
+
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate("CreateAccount")
+                  }
+                >
+                  <Text style={styles.signupButton}> Sign Up</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
-        </View>
+        </ImageBackground>
       </HandleBack>
     );
   }
@@ -72,23 +84,22 @@ export default class Login extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#455a64",
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
   },
   text: {
-    color: "rgba(255,255,255,0.7)",
+    color: "rgba(255,255,255,1.0)",
     fontSize: 18,
     marginVertical: 0
   },
   input: {
     width: 300,
-    backgroundColor: "rgba(255,255,255,0.3)",
+    backgroundColor: "rgba(255,255,255, 1.0)",
     borderRadius: 25,
     paddingHorizontal: 16,
     fontSize: 16,
-    color: "#ffffff",
+    color: "black",
     marginVertical: 10
   },
   button: {
@@ -111,8 +122,9 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   signupText: {
-    color: "rgba(255,255,255,0.6)",
-    fontSize: 16
+    color: "rgba(255,255,255,0.8)",
+    fontSize: 16,
+    justifyContent: "center"
   },
   signupButton: {
     color: "#ffffff",
