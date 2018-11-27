@@ -34,24 +34,28 @@ class MainPage extends Component {
     });
   };
   render() {
-    Drawer.defaultProps.styles.mainOverlay.elevation = 0;
-
     closeDrawer = () => {
       this.drawer._root.close();
     };
     openDrawer = () => {
       this.drawer._root.open();
     };
+    Drawer.defaultProps.styles.mainOverlay.elevation = 0;
 
     return (
-      <Drawer
-        ref={ref => {
-          this.drawer = ref;
-        }}
-        content={<SideDrawer navigator={this.navigator} />}
-        onClose={() => closeDrawer()}
-      >
-        <HandleBack onBack={this.onBack}>
+      <HandleBack onBack={this.onBack}>
+        <Drawer
+          ref={ref => {
+            this.drawer = ref;
+          }}
+          content={
+            <SideDrawer
+              navigator={this.navigator}
+              navigation={this.props.navigation}
+            />
+          }
+          onClose={() => closeDrawer()}
+        >
           <View style={{ flex: 1 }}>
             <View style={styles.drawerContainer}>
               <DrawerContainer
@@ -69,8 +73,8 @@ class MainPage extends Component {
               />
             </View>
           </View>
-        </HandleBack>
-      </Drawer>
+        </Drawer>
+      </HandleBack>
     );
   }
 }

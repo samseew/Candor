@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { createAppContainer } from "react-navigation";
-import { View, Text, Stylesheet, Button } from "react-native";
-import { Icon, Container, Header, Content, Left } from "native-base";
+import { Text, Stylesheet, Button } from "react-native";
+import { Container, Content } from "native-base";
 class SideDrawer extends Component {
   static navigationOptions = {
     title: "My Drawer"

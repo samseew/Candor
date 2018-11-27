@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     flex: 9,
     alignItems: "center",
-    right: "40%"
+    right: "20%"
   },
   Logo: {
     backgroundColor: "green"

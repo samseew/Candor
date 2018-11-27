@@ -10,12 +10,8 @@
 // import Test from "./app/components/MainPage.js";
 
 import React, { Component } from "react";
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
-import {
-  createStackNavigator,
-  createAppContainer,
-  createSwitchNavigator
-} from "react-navigation";
+import { StyleSheet, View, ActivityIndicator } from "react-native";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import MainPage from "./app/components/LoggedIn/Containers/MainPage.js";
 import Login from "./app/components/LoggedOut/Login.js";
 

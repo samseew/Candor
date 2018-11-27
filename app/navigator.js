@@ -1,9 +1,4 @@
-import {
-  createStackNavigator,
-  createAppContainer,
-  createSwitchNavigator,
-  createDrawerNavigator
-} from "react-navigation";
+import { createStackNavigator } from "react-navigation";
 import MainPage from "./components/LoggedIn/Containers/MainPage.js";
 import Login from "./components/LoggedOut/Login.js";
 import CreateAccount from "./components/LoggedOut/CreateAccount.js";
