@@ -65,7 +65,13 @@ export default class ItemContainer extends Component {
         <Container>
           <Content>
             {this.state.items.map(deal => {
-              return <Item id={deal.deal.id} deal={deal.deal} />;
+              return (
+                <Item
+                  id={deal.deal.id}
+                  deal={deal.deal}
+                  navigation={this.props.navigation}
+                />
+              );
             })}
           </Content>
         </Container>

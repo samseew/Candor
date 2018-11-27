@@ -42,7 +42,10 @@ class MainPage extends Component {
             <SearchContainer handleSearch={this.handleSearch} />
           </View>
           <View style={styles.itemContainer}>
-            <ItemContainer query={this.state.query} />
+            <ItemContainer
+              query={this.state.query}
+              navigation={this.props.navigation}
+            />
           </View>
         </View>
       </HandleBack>
