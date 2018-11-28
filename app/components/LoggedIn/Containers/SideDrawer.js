@@ -39,8 +39,27 @@ class SideDrawer extends Component {
           <Body>
             <Image source={navPic} style={styles.drawerImage} />
           </Body>
+          <Right>
+            <Text style={styles.welcome}>
+              Welcome {"\n"} {this.props.user_info.name}
+            </Text>
+          </Right>
         </Header>
         <Content>
+          <ListItem
+            icon
+            onPress={() => this.props.navigation.navigate("FavoriteCoupons")}
+          >
+            <Left>
+              <Button style={{ backgroundColor: "red" }}>
+                <Icon type="FontAwesome" name="star" />
+              </Button>
+            </Left>
+            <Body>
+              <Text>Favorite Coupons</Text>
+            </Body>
+          </ListItem>
+
           <ListItem
             icon
             onPress={() => this.props.navigation.navigate("Settings")}
@@ -75,5 +94,10 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     borderRadius: 75
+  },
+  welcome: {
+    color: "white",
+    marginRight: 10,
+    fontSize: 19
   }
 });

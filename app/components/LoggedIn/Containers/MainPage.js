@@ -50,6 +50,7 @@ class MainPage extends Component {
           }}
           content={
             <SideDrawer
+              user_info={this.state.user_info}
               navigator={this.navigator}
               navigation={this.props.navigation}
             />

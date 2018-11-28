@@ -7,12 +7,15 @@ import SideDrawer from "./components/LoggedIn/Containers/SideDrawer";
 import Settings from "./components/LoggedIn/Presentational/Settings";
 import AdvancedSearch from "./components/LoggedIn/Presentational/AdvancedSearch";
 import ItemDetails from "./components/LoggedIn/Presentational/ItemDetails";
+import FavoriteCoupons from "./components/LoggedIn/Containers/FavoriteCoupons";
+
 const AppNavigator = createStackNavigator({
   Home: MainPage,
   Drawer: SideDrawer,
   Settings: Settings,
   AdvancedSearch: AdvancedSearch,
-  ItemDetails: ItemDetails
+  ItemDetails: ItemDetails,
+  FavoriteCoupons: FavoriteCoupons
 });
 
 const SignedOutNavigator = createStackNavigator({

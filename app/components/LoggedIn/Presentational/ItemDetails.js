@@ -35,7 +35,7 @@ export default class ItemDetails extends Component {
   //.merchant.country
   //.url
 
-  postFavoriteorUnfavorite = () => {
+  postFavoriteOrUnfavorite = () => {
     this.setState({ liked: !this.state.liked });
     console.log();
   };
@@ -55,7 +55,7 @@ export default class ItemDetails extends Component {
               style={{ marginRight: 10 }}
               type="FontAwesome"
               name={this.state.liked ? "heart" : "heart-o"}
-              onPress={() => this.postFavoriteorUnfavorite()}
+              onPress={() => this.postFavoriteOrUnfavorite()}
             />
           </Right>
         </Header>
