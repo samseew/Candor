@@ -11,13 +11,16 @@ import SideDrawer from "./SideDrawer";
 class MainPage extends Component {
   // drawer brightness bug = change elevation to 0
   //nativebase/dist/src/basic/Drawer/index.js
+
+  //to see asnyc in dev tools call showAsyncStorageContentInDev()
   static navigationOptions = {
     header: null
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      user_info: this.props.navigation.getParam("user_info"),
       query: null
     };
   }

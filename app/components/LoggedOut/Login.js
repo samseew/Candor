@@ -10,13 +10,75 @@ import {
   StyleSheet,
   StatusBar,
   TouchableOpacity,
-  ImageBackground
+  ImageBackground,
+  AsyncStorage
 } from "react-native";
 import HandleBack from "../../HandleBack";
 
 export default class Login extends Component {
   static navigationOptions = {
     header: null
+  };
+
+  constructor() {
+    super();
+    this.state = {
+      email: "bigboi@yahoo.com",
+      password: "1234",
+      token: null
+    };
+  }
+
+  getToken = async () => {
+    try {
+      let token = await AsyncStorage.getItem("token");
+      if (token) {
+        return token;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  componentDidMount() {
+    let promise = this.getToken().then(token => {
+      debugger;
+      return fetch("http://10.113.104.217:3000/profile", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+        });
+    });
+  }
+
+  handleLoginSubmit = () => {
+    // you must use your ip address
+    //instead of localhost, as it interferes with your emulator
+    return fetch("http://10.113.104.217:3000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        AsyncStorage.setItem("token", data.token);
+        console.log(data);
+        this.props.navigation.navigate("Home", {
+          user_info: data.user_info
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   onBack = () => {
@@ -38,19 +100,22 @@ export default class Login extends Component {
               <Logo />
               <Text style={styles.text}>CANDOR</Text>
               <TextInput
+                onChangeText={text => this.setState({ email: text })}
                 style={styles.input}
                 placeholder="Email"
                 placeholderTextColor="black"
               />
               <TextInput
+                onChangeText={text => this.setState({ password: text })}
                 style={styles.input}
                 secureTextEntry={true}
                 placeholder="Password"
                 placeholderTextColor="black"
+                onSubmitEditing={() => this.handleLoginSubmit(this.state)}
               />
               <TouchableOpacity
                 style={styles.button}
-                onPress={() => this.props.navigation.navigate("Home")}
+                onPress={() => this.handleLoginSubmit()}
               >
                 <Text style={styles.buttonText}>Login</Text>
               </TouchableOpacity>
