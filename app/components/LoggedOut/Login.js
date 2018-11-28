@@ -42,16 +42,19 @@ export default class Login extends Component {
 
   componentDidMount() {
     let promise = this.getToken().then(token => {
-      debugger;
-      return fetch("http://10.113.104.217:3000/profile", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-        });
+      if (token) {
+        return fetch("http://10.113.104.217:3000/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+          .then(res => res.json())
+          .then(data => {
+            this.props.navigation.navigate("Home", {
+              user_info: data.user
+            });
+          });
+      }
     });
   }
 
@@ -71,7 +74,6 @@ export default class Login extends Component {
       .then(res => res.json())
       .then(data => {
         AsyncStorage.setItem("token", data.token);
-        console.log(data);
         this.props.navigation.navigate("Home", {
           user_info: data.user_info
         });

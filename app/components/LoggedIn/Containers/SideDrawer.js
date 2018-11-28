@@ -12,7 +12,9 @@ import {
   Left,
   Body,
   Right,
-  Switch
+  Switch,
+  Footer,
+  FooterTab
 } from "native-base";
 import navPic from "../../../assets/disco-75c0c1ef.png";
 class SideDrawer extends Component {
@@ -42,6 +44,14 @@ class SideDrawer extends Component {
             </Body>
           </ListItem>
         </Content>
+
+        <Footer>
+          <FooterTab>
+            <Button full>
+              <Text>Logout</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
       </Container>
     );
   }
