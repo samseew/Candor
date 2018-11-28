@@ -35,9 +35,18 @@ export default class ItemDetails extends Component {
   //.merchant.country
   //.url
 
-  postFavoriteOrUnfavorite = () => {
+  postFavoriteOrUnfavorite = item => {
     this.setState({ liked: !this.state.liked });
-    console.log();
+
+    if (this.state.liked) {
+      return this.props.navigation.getParam("handleUnFavorite")(item);
+
+      //post to back end to add coupon info to the user
+    } else {
+      return this.props.navigation.getParam("handleFavorite")(item);
+
+      //do another post to back end to remove coupon info from user
+    }
   };
   render() {
     return (
@@ -55,7 +64,11 @@ export default class ItemDetails extends Component {
               style={{ marginRight: 10 }}
               type="FontAwesome"
               name={this.state.liked ? "heart" : "heart-o"}
-              onPress={() => this.postFavoriteOrUnfavorite()}
+              onPress={() =>
+                this.postFavoriteOrUnfavorite(
+                  this.props.navigation.getParam("item")
+                )
+              }
             />
           </Right>
         </Header>

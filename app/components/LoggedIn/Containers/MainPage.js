@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import { fetchData } from "../actions/asyncAction.js";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet, AsyncStorage } from "react-native";
 import HandleBack from "../../../HandleBack";
 import NavContainer from "./NavContainer";
 import SearchContainer from "./SearchContainer";
@@ -28,6 +28,52 @@ class MainPage extends Component {
   onBack = () => {
     return false; // false = android button click goes back a screen,
     //set to true to disable android back button
+  };
+  getToken = async () => {
+    try {
+      let token = await AsyncStorage.getItem("token");
+      if (token) {
+        return token;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  handleFavorite = item => {
+    return this.getToken().then(token => {
+      if (token) {
+        return fetch("http://10.113.104.217:3000/coupons", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: JSON.stringify({
+            info: item
+          })
+        })
+          .then(res => res.json())
+          .then(data => {
+            debugger;
+          });
+      }
+    });
+  };
+
+  handleUnFavorite = item => {
+    return this.getToken().then(token => {
+      if (token) {
+        debugger;
+        return fetch(`http://10.113.104.217:3000/coupons/${item.id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+      }
+    });
   };
 
   handleSearch = term => {
@@ -69,6 +115,8 @@ class MainPage extends Component {
             </View>
             <View style={styles.itemContainer}>
               <ItemContainer
+                handleFavorite={this.handleFavorite}
+                handleUnFavorite={this.handleUnFavorite}
                 query={this.state.query}
                 navigation={this.props.navigation}
               />

@@ -70,6 +70,8 @@ export default class ItemContainer extends Component {
             {this.state.items.map(deal => {
               return (
                 <Item
+                  handleFavorite={this.props.handleFavorite}
+                  handleUnFavorite={this.props.handleUnFavorite}
                   id={deal.deal.id}
                   deal={deal.deal}
                   navigation={this.props.navigation}
@@ -86,6 +88,8 @@ export default class ItemContainer extends Component {
             {this.state.items.map(deal => {
               return (
                 <Item
+                  handleFavorite={this.props.handleFavorite}
+                  handleUnFavorite={this.props.handleUnFavorite}
                   id={deal.deal.id}
                   deal={deal.deal}
                   navigation={this.props.navigation}

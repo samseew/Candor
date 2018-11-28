@@ -22,7 +22,9 @@ export default class Item extends Component {
         onPress={() =>
           this.props.navigation.navigate("ItemDetails", {
             id: this.props.id,
-            item: this.props.deal
+            item: this.props.deal,
+            handleFavorite: this.props.handleFavorite,
+            handleUnFavorite: this.props.handleUnFavorite
           })
         }
       >
