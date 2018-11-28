@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, AsyncStorage } from "react-native";
 import {
   Container,
   Button,
@@ -21,6 +21,17 @@ class SideDrawer extends Component {
   static navigationOptions = {
     title: "My Drawer"
   };
+
+  logOut = async () => {
+    try {
+      await AsyncStorage.removeItem("token").then(data => {
+        this.props.navigation.navigate("Login");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   render() {
     return (
       <Container>
@@ -47,7 +58,7 @@ class SideDrawer extends Component {
 
         <Footer>
           <FooterTab>
-            <Button full>
+            <Button full onPress={() => this.logOut()}>
               <Text>Logout</Text>
             </Button>
           </FooterTab>
