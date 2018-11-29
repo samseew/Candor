@@ -142,6 +142,8 @@ class MainPage extends Component {
                 handleUnFavorite={this.handleUnFavorite.bind(this)}
                 query={this.state.query}
                 navigation={this.props.navigation}
+                itemsFavorited={this.state.itemsFavorited}
+                user_info={this.state.user_info}
               />
             </View>
           </View>

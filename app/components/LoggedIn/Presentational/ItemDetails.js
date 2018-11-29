@@ -45,6 +45,24 @@ export default class ItemDetails extends Component {
       //do another post to back end to remove coupon info from user
     }
   };
+
+  componentDidMount = () => {
+    let allFavorites = [];
+    this.props.navigation.getParam("user_info").coupons.forEach(coupon => {
+      allFavorites.push(JSON.parse(coupon.info));
+    });
+    this.props.navigation
+      .getParam("itemsFavorited")
+      .forEach(item => allFavorites.push(item));
+    let favorited = allFavorites.find(
+      item => item.id === this.props.navigation.getParam("id")
+    );
+    if (favorited) {
+      this.setState({
+        liked: true
+      });
+    }
+  };
   render() {
     return (
       <Container>
