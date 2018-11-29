@@ -87,9 +87,9 @@ App
 
     ##
     lots of styling 
-    - cards,
     - card details 
-    - main page 
+    - favorite page 
+    - settings page 
     token auth  
     - create new acc 
     - reset password to email 

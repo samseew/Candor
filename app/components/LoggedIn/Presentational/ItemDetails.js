@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Image, Linking } from "react-native";
 import {
   Container,
   Content,
@@ -8,7 +8,16 @@ import {
   Right,
   Button,
   Icon,
-  Left
+  Left,
+  H1,
+  H2,
+  H3,
+  Col,
+  Row,
+  Grid,
+  Thumbnail,
+  Footer,
+  FooterTab
 } from "native-base";
 
 export default class ItemDetails extends Component {
@@ -23,18 +32,6 @@ export default class ItemDetails extends Component {
   };
   // to get item props = this.props.navigation.getParam('item')
   // id = this.props.navigation.getParam('id')
-
-  // .title
-  //.description
-  //.image_url
-  //.fine_print
-  //.merchant.name
-  //.merchant.address
-  //.merchant.postal_code
-  //.merchant.region (state)
-  //.merchant.country
-  //.url
-
   postFavoriteOrUnfavorite = item => {
     this.setState({ liked: !this.state.liked });
 
@@ -51,7 +48,7 @@ export default class ItemDetails extends Component {
   render() {
     return (
       <Container>
-        <Header style={{ backgroundColor: "#9eb0d5" }}>
+        <Header>
           <Left>
             <Icon
               onPress={() => this.props.navigation.goBack()}
@@ -72,13 +69,97 @@ export default class ItemDetails extends Component {
             />
           </Right>
         </Header>
-        <Content>
-          <Text>lol</Text>
-          {/* <Text>{this.props.navigation.getParam("item").title}</Text> */}
-        </Content>
+        <View style={{ flex: 1 }}>
+          <Content style={{ flex: 1 }}>
+            <Grid style={{ flex: 1 }}>
+              <Row style={styles.titleContainer}>
+                <Text style={styles.title}>
+                  {this.props.navigation.getParam("item").title}
+                </Text>
+              </Row>
+              <Row
+                style={{ justifyContent: "center", backgroundColor: "black" }}
+              >
+                <Thumbnail
+                  style={styles.Thumbnail}
+                  square
+                  source={{
+                    uri: this.props.navigation.getParam("item").image_url
+                  }}
+                />
+              </Row>
+              <Row>
+                <Text>
+                  Price: ${this.props.navigation.getParam("item").price}
+                </Text>
+              </Row>
+              <Row style={styles.description}>
+                <Text>
+                  {this.props.navigation.getParam("item").description}
+                </Text>
+              </Row>
+              <Row style={styles.finePrint}>
+                <Text>{this.props.navigation.getParam("item").fine_print}</Text>
+              </Row>
+              <Row />
+              <Row>
+                <Text>
+                  {this.props.navigation.getParam("item").merchant.address
+                    ? `                  ${
+                        this.props.navigation.getParam("item").merchant.name
+                      }
+                    Address: ${
+                      this.props.navigation.getParam("item").merchant.address
+                    },
+                      ${this.props.navigation.getParam("item").merchant.region},
+                      ${
+                        this.props.navigation.getParam("item").merchant.country
+                      },
+                      ${
+                        this.props.navigation.getParam("item").merchant
+                          .postal_code
+                      }`
+                    : null}
+                </Text>
+              </Row>
+            </Grid>
+          </Content>
+        </View>
+        <Footer>
+          <FooterTab>
+            <Button
+              full
+              onPress={() =>
+                Linking.openURL(
+                  this.props.navigation.getParam("item").url
+                ).catch(err => console.error("an error occurred", err))
+              }
+            >
+              <Text>Order!</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
       </Container>
     );
   }
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  Thumbnail: {
+    width: 250,
+    height: 250
+  },
+  titleContainer: {
+    backgroundColor: "#635DB7",
+    marginTop: 10
+  },
+  finePrint: {
+    marginTop: 10
+  },
+  description: {
+    marginTop: 10
+  },
+  title: {
+    fontSize: 20
+  }
+});
