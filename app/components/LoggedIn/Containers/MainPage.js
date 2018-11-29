@@ -63,9 +63,12 @@ class MainPage extends Component {
   };
 
   handleUnFavorite = item => {
+    // unfavorite work around - store ids in async state for immediate deleteing,
+    //otherwise - on favorites page, you have access to the rails coupon id so u
+    // can delete using another fetch there
     return this.getToken().then(token => {
+      debugger;
       if (token) {
-        debugger;
         return fetch(`http://10.113.104.217:3000/coupons/${item.id}`, {
           method: "DELETE",
           headers: {
