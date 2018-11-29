@@ -119,8 +119,6 @@ class MainPage extends Component {
               itemsFavorited={this.state.itemsFavorited}
               navigator={this.navigator}
               navigation={this.props.navigation}
-              handleFavorite={this.handleFavorite}
-              handleUnFavorite={this.handleUnFavorite.bind(this)}
             />
           }
           onClose={() => this.closeDrawer()}

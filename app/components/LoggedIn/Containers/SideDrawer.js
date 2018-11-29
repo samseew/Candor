@@ -51,8 +51,6 @@ class SideDrawer extends Component {
             icon
             onPress={() =>
               this.props.navigation.navigate("FavoriteCoupons", {
-                handleFavorite: this.props.handleFavorite,
-                handleUnFavorite: this.props.handleUnFavorite,
                 navigaton: this.props.navigation,
                 itemsFavorited: this.props.itemsFavorited,
                 user_info: this.props.user_info

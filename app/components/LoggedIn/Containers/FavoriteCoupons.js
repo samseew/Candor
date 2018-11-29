@@ -64,6 +64,65 @@ export default class FavoriteCoupons extends Component {
       }
     });
   }
+
+  getToken = async () => {
+    // if the gettoken involves an item, it will take it as argument
+    try {
+      let token = await AsyncStorage.getItem("token");
+      if (token) {
+        return token;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  handleFavorite = item => {
+    debugger;
+    return this.getToken().then(token => {
+      if (token) {
+        return fetch("http://10.113.104.217:3000/coupons", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: JSON.stringify({
+            info: item
+          })
+        })
+          .then(res => res.json())
+          .then(data => {
+            this.setState({
+              itemsFavorited: [...this.state.itemsFavorited, data]
+            });
+          });
+      }
+    });
+  };
+
+  handleUnFavorite = item => {
+    userInfo = this.props.navigation.getParam("user_info");
+    selectedItem = userInfo.coupons.find(
+      el => JSON.parse(el.info).id === item.id
+    );
+
+    // unfavorite work around - store ids in async state for immediate deleteing,
+    //otherwise - on favorites page, you have access to the rails coupon id so u
+    // can delete using another fetch there
+    return this.getToken().then(token => {
+      if (token) {
+        return fetch(`http://10.113.104.217:3000/coupons/${selectedItem.id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+      }
+    });
+  };
+
   render() {
     if (this.state.isLoading) {
       return (
@@ -109,12 +168,8 @@ export default class FavoriteCoupons extends Component {
                   id={coupon.id}
                   deal={coupon}
                   navigation={this.props.navigation}
-                  handleFavorite={this.props.navigation.getParam(
-                    "handleFavorite"
-                  )}
-                  handleUnFavorite={this.props.navigation.getParam(
-                    "handleUnFavorite"
-                  )}
+                  handleFavorite={this.handleFavorite.bind(this)}
+                  handleUnFavorite={this.handleUnFavorite.bind(this)}
                   itemsFavorited={this.props.navigation.getParam(
                     "itemsFavorited"
                   )}
