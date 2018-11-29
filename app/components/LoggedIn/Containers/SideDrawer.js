@@ -17,6 +17,7 @@ import {
   FooterTab
 } from "native-base";
 import navPic from "../../../assets/disco-75c0c1ef.png";
+import FavoriteCoupons from "./FavoriteCoupons";
 class SideDrawer extends Component {
   static navigationOptions = {
     title: "My Drawer"
@@ -48,7 +49,13 @@ class SideDrawer extends Component {
         <Content>
           <ListItem
             icon
-            onPress={() => this.props.navigation.navigate("FavoriteCoupons")}
+            onPress={() =>
+              this.props.navigation.navigate("FavoriteCoupons", {
+                handleFavorite: this.props.handleFavorite,
+                handleUnFavorite: this.props.handleUnFavorite,
+                navigaton: this.props.navigation
+              })
+            }
           >
             <Left>
               <Button style={{ backgroundColor: "red" }}>

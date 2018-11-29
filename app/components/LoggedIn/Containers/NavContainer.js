@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import { fetchData } from "../actions/asyncAction.js";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Switch } from "react-native";
 import { Icon, Button } from "native-base";
 import Logo from "../../LoggedOut/Logo.js";
 
@@ -29,12 +29,19 @@ class DrawerContainer extends Component {
             <Logo />
           </View>
         </View>
-        <Button
+        <View>
+          <Text>Near Me</Text>
+          <Switch
+            onValueChange={() => this.props.handleNearMeSwitch()}
+            value={this.props.nearMe}
+          />
+        </View>
+        {/* <Button
           transparent
           onPress={() => this.props.navigation.navigate("AdvancedSearch")}
         >
           <Icon name="search" />
-        </Button>
+        </Button> */}
       </View>
     );
   }

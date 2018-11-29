@@ -22,7 +22,8 @@ class MainPage extends Component {
     this.state = {
       user_info: this.props.navigation.getParam("user_info"),
       query: null,
-      itemsFavorited: []
+      itemsFavorited: [],
+      nearMe: false
     };
   }
 
@@ -86,6 +87,14 @@ class MainPage extends Component {
     });
   };
 
+  handleNearMeSwitch = () => {
+    console.log("clicked");
+
+    this.setState({
+      nearMe: !this.state.nearMe
+    });
+  };
+
   handleSearch = term => {
     this.setState({
       query: term
@@ -109,6 +118,8 @@ class MainPage extends Component {
               user_info={this.state.user_info}
               navigator={this.navigator}
               navigation={this.props.navigation}
+              handleFavorite={this.handleFavorite}
+              handleUnFavorite={this.handleUnFavorite.bind(this)}
             />
           }
           onClose={() => this.closeDrawer()}
@@ -118,6 +129,8 @@ class MainPage extends Component {
               <NavContainer
                 navigation={this.props.navigation}
                 openDrawer={() => this.openDrawer()}
+                nearMe={this.state.nearMe}
+                handleNearMeSwitch={this.handleNearMeSwitch}
               />
             </View>
             <View style={styles.searchContainer}>

@@ -48,7 +48,7 @@ export default class ItemDetails extends Component {
   render() {
     return (
       <Container>
-        <Header>
+        <Header style={{ backgroundColor: "#9eb0d5" }}>
           <Left>
             <Icon
               onPress={() => this.props.navigation.goBack()}
@@ -150,7 +150,6 @@ const styles = StyleSheet.create({
     height: 250
   },
   titleContainer: {
-    backgroundColor: "#635DB7",
     marginTop: 10
   },
   finePrint: {
