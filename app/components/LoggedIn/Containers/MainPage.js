@@ -116,6 +116,7 @@ class MainPage extends Component {
           content={
             <SideDrawer
               user_info={this.state.user_info}
+              itemsFavorited={this.state.itemsFavorited}
               navigator={this.navigator}
               navigation={this.props.navigation}
               handleFavorite={this.handleFavorite}

@@ -115,6 +115,10 @@ export default class FavoriteCoupons extends Component {
                   handleUnFavorite={this.props.navigation.getParam(
                     "handleUnFavorite"
                   )}
+                  itemsFavorited={this.props.navigation.getParam(
+                    "itemsFavorited"
+                  )}
+                  user_info={this.props.navigation.getParam("user_info")}
                 />
               );
             })}
