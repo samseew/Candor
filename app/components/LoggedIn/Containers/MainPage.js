@@ -21,7 +21,8 @@ class MainPage extends Component {
     super(props);
     this.state = {
       user_info: this.props.navigation.getParam("user_info"),
-      query: null
+      query: null,
+      itemsFavorited: []
     };
   }
 
@@ -30,6 +31,7 @@ class MainPage extends Component {
     //set to true to disable android back button
   };
   getToken = async () => {
+    // if the gettoken involves an item, it will take it as argument
     try {
       let token = await AsyncStorage.getItem("token");
       if (token) {
@@ -56,20 +58,25 @@ class MainPage extends Component {
         })
           .then(res => res.json())
           .then(data => {
-            debugger;
+            this.setState({
+              itemsFavorited: [...this.state.itemsFavorited, data]
+            });
           });
       }
     });
   };
 
   handleUnFavorite = item => {
+    selectedItem = this.state.itemsFavorited.find(
+      viewedItem => viewedItem.info === JSON.stringify(item)
+    );
     // unfavorite work around - store ids in async state for immediate deleteing,
     //otherwise - on favorites page, you have access to the rails coupon id so u
     // can delete using another fetch there
     return this.getToken().then(token => {
-      debugger;
       if (token) {
-        return fetch(`http://10.113.104.217:3000/coupons/${item.id}`, {
+        debugger;
+        return fetch(`http://10.113.104.217:3000/coupons/${selectedItem.id}`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`
@@ -119,7 +126,7 @@ class MainPage extends Component {
             <View style={styles.itemContainer}>
               <ItemContainer
                 handleFavorite={this.handleFavorite}
-                handleUnFavorite={this.handleUnFavorite}
+                handleUnFavorite={this.handleUnFavorite.bind(this)}
                 query={this.state.query}
                 navigation={this.props.navigation}
               />
