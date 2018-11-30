@@ -35,7 +35,11 @@ export default class Login extends Component {
     try {
       let fbToken = await AccessToken.getCurrentAccessToken();
       if (fbToken) {
-        return fbToken;
+        return AsyncStorage.setItem("fbToken", fbToken.accessToken).then(
+          data => {
+            return fbToken;
+          }
+        );
       }
     } catch (error) {
       console.log(error);
@@ -123,10 +127,11 @@ export default class Login extends Component {
       .then(res => res.json())
       .then(data => {
         if (data.user_info) {
-          AsyncStorage.setItem("token", data.token);
-          this.props.navigation.navigate("Home", {
-            user_info: data.user_info
-          });
+          AsyncStorage.setItem("token", data.token).then(
+            this.props.navigation.navigate("Home", {
+              user_info: data.user_info
+            })
+          );
         } else {
           Alert.alert("Incorrect Email or Password");
         }
@@ -184,6 +189,8 @@ export default class Login extends Component {
                       console.log("login is cancelled.");
                     } else {
                       AccessToken.getCurrentAccessToken().then(data => {
+                        AsyncStorage.setItem("fbToken", data.accessToken);
+
                         return fetch(
                           `https://graph.facebook.com/v3.2/me?fields=id,name&access_token=${
                             data.accessToken

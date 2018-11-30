@@ -18,6 +18,13 @@ import {
 } from "native-base";
 import navPic from "../../../assets/disco-75c0c1ef.png";
 import FavoriteCoupons from "./FavoriteCoupons";
+import {
+  LoginButton,
+  AccessToken,
+  LoginManager,
+  FacebookSdk
+} from "react-native-fbsdk";
+
 class SideDrawer extends Component {
   static navigationOptions = {
     title: "My Drawer"
@@ -26,6 +33,17 @@ class SideDrawer extends Component {
   logOut = async () => {
     try {
       await AsyncStorage.removeItem("token").then(data => {
+        this.props.navigation.navigate("Login");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  fbLogOut = async () => {
+    try {
+      await AsyncStorage.removeItem("fbToken").then(data => {
+        LoginManager.logOut();
         this.props.navigation.navigate("Login");
       });
     } catch (error) {
@@ -84,6 +102,9 @@ class SideDrawer extends Component {
 
         <Footer>
           <FooterTab>
+            <Button onPress={() => this.fbLogOut()}>
+              <Text>fb logout</Text>
+            </Button>
             <Button full onPress={() => this.logOut()}>
               <Text>Logout</Text>
             </Button>
