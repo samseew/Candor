@@ -29,6 +29,12 @@ class SideDrawer extends Component {
   static navigationOptions = {
     title: "My Drawer"
   };
+  constructor() {
+    super();
+    this.state = {
+      facebook: false
+    };
+  }
 
   logOut = async () => {
     try {
@@ -50,6 +56,24 @@ class SideDrawer extends Component {
       console.log(error);
     }
   };
+
+  componentDidMount() {
+    try {
+      AsyncStorage.getItem("token").then(data => {
+        if (data) {
+          this.setState({
+            facebook: false
+          });
+        } else {
+          this.setState({
+            facebook: true
+          });
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   render() {
     return (
@@ -102,12 +126,15 @@ class SideDrawer extends Component {
 
         <Footer>
           <FooterTab>
-            <Button onPress={() => this.fbLogOut()}>
-              <Text>fb logout</Text>
-            </Button>
-            <Button full onPress={() => this.logOut()}>
-              <Text>Logout</Text>
-            </Button>
+            {this.state.facebook ? (
+              <Button onPress={() => this.fbLogOut()}>
+                <Text>Logout</Text>
+              </Button>
+            ) : (
+              <Button full onPress={() => this.logOut()}>
+                <Text>Logout</Text>
+              </Button>
+            )}
           </FooterTab>
         </Footer>
       </Container>
