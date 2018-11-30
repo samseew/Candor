@@ -11,7 +11,8 @@ import {
   StatusBar,
   TouchableOpacity,
   ImageBackground,
-  AsyncStorage
+  AsyncStorage,
+  Alert
 } from "react-native";
 import HandleBack from "../../HandleBack";
 import { LoginButton, AccessToken } from "react-native-fbsdk";
@@ -98,13 +99,17 @@ export default class Login extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        AsyncStorage.setItem("token", data.token);
-        this.props.navigation.navigate("Home", {
-          user_info: data.user_info
-        });
+        if (data.user_info) {
+          AsyncStorage.setItem("token", data.token);
+          this.props.navigation.navigate("Home", {
+            user_info: data.user_info
+          });
+        } else {
+          Alert.alert("Incorrect Email or Password");
+        }
       })
       .catch(error => {
-        console.error(error);
+        console.log(error);
       });
   };
 
@@ -164,11 +169,11 @@ export default class Login extends Component {
                   onLogoutFinished={() => console.log("logout.")}
                 />
               </View>
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 onPress={() => this.props.navigation.navigate("ForgotPassword")}
               >
                 <Text style={styles.buttonText}>Forgot Password</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
 
               <View style={styles.signupTextContent}>
                 <Text style={styles.signupText}>
