@@ -160,7 +160,6 @@ export default class Login extends Component {
                       console.log("login is cancelled.");
                     } else {
                       AccessToken.getCurrentAccessToken().then(data => {
-                        debugger;
                         return fetch(
                           `https://graph.facebook.com/v3.2/me?fields=id,name&access_token=${
                             data.accessToken
@@ -180,7 +179,9 @@ export default class Login extends Component {
                             })
                               .then(res => res.json())
                               .then(data => {
-                                debugger;
+                                this.props.navigation.navigate("Home", {
+                                  user_info: data.user
+                                });
                               });
                           });
 
