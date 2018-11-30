@@ -14,6 +14,7 @@ import {
   AsyncStorage
 } from "react-native";
 import HandleBack from "../../HandleBack";
+import { LoginButton, AccessToken } from "react-native-fbsdk";
 
 export default class Login extends Component {
   static navigationOptions = {
@@ -29,6 +30,16 @@ export default class Login extends Component {
     };
   }
 
+  getFacebookToken = async () => {
+    try {
+      let fbToken = await AccessToken.getCurrentAccessToken();
+      if (fbToken) {
+        return fbToken;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   getToken = async () => {
     try {
       let token = await AsyncStorage.getItem("token");
@@ -41,20 +52,34 @@ export default class Login extends Component {
   };
 
   componentDidMount() {
-    let promise = this.getToken().then(token => {
-      if (token) {
-        return fetch("http://10.113.104.217:3000/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`
+    this.getFacebookToken().then(fbToken => {
+      if (fbToken) {
+        debugger;
+      } else {
+        let promise = this.getToken().then(token => {
+          if (token) {
+            return fetch("http://10.113.104.217:3000/profile", {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            })
+              .then(res => res.json())
+              .then(data => {
+                this.props.navigation.navigate("Home", {
+                  user_info: data.user
+                });
+              });
           }
-        })
-          .then(res => res.json())
-          .then(data => {
-            this.props.navigation.navigate("Home", {
-              user_info: data.user
-            });
-          });
+        });
       }
+      // else {
+      //   AccessToken.getCurrentAccessToken()
+      //     .then(data => {
+      //       debugger;
+      //     })
+      //     .catch(error => console.log(error));
+      //
+      // }
     });
   }
 
@@ -122,6 +147,23 @@ export default class Login extends Component {
                 <Text style={styles.buttonText}>Login</Text>
               </TouchableOpacity>
 
+              <View>
+                <LoginButton
+                  onLoginFinished={(error, result) => {
+                    if (error) {
+                      console.log("login has error: " + result.error);
+                    } else if (result.isCancelled) {
+                      console.log("login is cancelled.");
+                    } else {
+                      AccessToken.getCurrentAccessToken().then(data => {
+                        debugger;
+                        console.log(data.accessToken.toString());
+                      });
+                    }
+                  }}
+                  onLogoutFinished={() => console.log("logout.")}
+                />
+              </View>
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate("ForgotPassword")}
               >
