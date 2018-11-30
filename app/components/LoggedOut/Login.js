@@ -55,7 +55,6 @@ export default class Login extends Component {
   componentDidMount() {
     this.getFacebookToken().then(fbToken => {
       if (fbToken) {
-        debugger;
       } else {
         let promise = this.getToken().then(token => {
           if (token) {
@@ -161,6 +160,30 @@ export default class Login extends Component {
                       console.log("login is cancelled.");
                     } else {
                       AccessToken.getCurrentAccessToken().then(data => {
+                        debugger;
+                        return fetch(
+                          `https://graph.facebook.com/v3.2/me?fields=id,name&access_token=${
+                            data.accessToken
+                          }`
+                        )
+                          .then(res => res.json())
+                          .then(data => {
+                            fetch("http://10.113.104.217:3000/facebook", {
+                              method: "POST",
+                              headers: {
+                                "Content-Type": "application/json"
+                              },
+                              body: JSON.stringify({
+                                facebookId: data.id,
+                                name: data.name
+                              })
+                            })
+                              .then(res => res.json())
+                              .then(data => {
+                                debugger;
+                              });
+                          });
+
                         debugger;
                         console.log(data.accessToken.toString());
                       });
