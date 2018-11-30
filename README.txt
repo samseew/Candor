@@ -87,13 +87,12 @@ App
 
     ##
     lots of styling 
-    - card details 
-    - favorite page 
     - settings page 
     token auth  
     - create new acc 
     - reset password to email 
     - auth0?
+    - 2 step - twilio 
     advanced search 
     - location 
     - category 
