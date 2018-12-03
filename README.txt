@@ -60,16 +60,16 @@ App
 |_User Login (Token = False)
 |_User Main Page (Token = True)
     |_ Nav
-        |_ LogOut Button
         |_Side Nav
             |_Favorited Coupons
             |_ Settings 
                 |_Profile
                 |_Default Settings
+            |_ LogOut Button
+
     |_Search Container
         |_Search Input
         |_Filters 
-        |_ Current Store Location
     |_ Item Container
         |_Items List
             |_Item (preview of deal/exp date/photo preview)
@@ -77,3 +77,25 @@ App
                          with other stores/chains?)
 
     ///////////
+
+
+
+
+
+
+
+
+    ##
+    lots of styling 
+    - settings page 
+    token auth  
+    - create new acc 
+    - reset password to email 
+    - auth0?
+    - 2 step - twilio 
+    advanced search 
+    - location 
+    - category 
+
+    -scrolling down renders new items 
+    -drag down rerenders the item container
