@@ -85,23 +85,50 @@ class MainPage extends Component {
   };
 
   handleUnFavorite = item => {
-    selectedItem = this.state.itemsFavorited.find(
-      viewedItem => viewedItem.info === JSON.stringify(item)
-    );
-    // unfavorite work around - store ids in async state for immediate deleteing,
-    //otherwise - on favorites page, you have access to the rails coupon id so u
-    // can delete using another fetch there
-    return this.getToken().then(token => {
-      if (token) {
-        debugger;
-        return fetch(`http://10.113.104.217:3000/coupons/${selectedItem.id}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
+    selectedItem = item;
+    try {
+      AsyncStorage.getItem("user_info").then(data => {
+        userObject = JSON.parse(data); // gets info
+        coupons = userObject.coupons.map(el => {
+          //parses coupons
+          let coupon = { ...el };
+          coupon.info = JSON.parse(el.info);
+          return coupon;
         });
-      }
-    });
+        couponToUnFavorite = coupons.find(
+          //coupon to unfavorite
+          coupon => coupon.info.id === selectedItem.id
+        );
+        return this.getToken()
+          .then(token => {
+            if (token) {
+              return fetch(
+                `http://10.113.104.217:3000/coupons/${couponToUnFavorite.id}`,
+                {
+                  method: "DELETE",
+                  headers: {
+                    Authorization: `Bearer ${token}`
+                  }
+                }
+              );
+            }
+          })
+          .then(() => {
+            let updatedCoupons = coupons.filter(
+              coupon => coupon.id !== couponToUnFavorite.id
+            );
+            let stringifyUpdatedCouponsInfo = updatedCoupons.map(el => {
+              let coupon = { ...el };
+              coupon.info = JSON.stringify(el.info);
+              return coupon;
+            });
+            userObject.coupons = stringifyUpdatedCouponsInfo;
+            AsyncStorage.setItem("user_info", JSON.stringify(userObject));
+          });
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   handleNearMeSwitch = () => {

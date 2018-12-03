@@ -58,40 +58,9 @@ export default class FavoriteCoupons extends Component {
     } catch (error) {
       console.log(error);
     }
-
-    // return this.getToken().then(token => {
-    //   if (token) {
-    //     return fetch("http://10.113.104.217:3000/profile", {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`
-    //       }
-    //     })
-    //       .then(res => res.json())
-    //       .then(data => {
-    //         parsedCoupons = data.user.coupons.map(el => JSON.parse(el.info));
-    //         this.setState({
-    //           coupons: parsedCoupons,
-    //           isLoading: false
-    //         });
-    //       });
-    //   }
-    // });
   }
 
-  getToken = async () => {
-    // if the gettoken involves an item, it will take it as argument
-    try {
-      let token = await AsyncStorage.getItem("token");
-      if (token) {
-        return token;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   handleFavorite = item => {
-    debugger;
     return this.getToken().then(token => {
       if (token) {
         return fetch("http://10.113.104.217:3000/coupons", {
@@ -107,33 +76,76 @@ export default class FavoriteCoupons extends Component {
         })
           .then(res => res.json())
           .then(data => {
-            this.setState({
-              itemsFavorited: [...this.state.itemsFavorited, data]
+            selectedItem = data;
+            AsyncStorage.getItem("user_info").then(info => {
+              let userObject = JSON.parse(info);
+              userObject.coupons.push(selectedItem);
+              AsyncStorage.setItem("user_info", JSON.stringify(userObject));
+              let parsedCoupons = userObject.coupons.map(el =>
+                JSON.parse(el.info)
+              );
+              this.setState({
+                coupons: parsedCoupons
+              });
             });
+
+            // this.setState({
+            //   itemsFavorited: [...this.state.itemsFavorited, data]
+            // });
           });
       }
     });
   };
 
   handleUnFavorite = item => {
-    userInfo = this.props.navigation.getParam("user_info");
-    selectedItem = userInfo.coupons.find(
-      el => JSON.parse(el.info).id === item.id
-    );
-
-    // unfavorite work around - store ids in async state for immediate deleteing,
-    //otherwise - on favorites page, you have access to the rails coupon id so u
-    // can delete using another fetch there
-    return this.getToken().then(token => {
-      if (token) {
-        return fetch(`http://10.113.104.217:3000/coupons/${selectedItem.id}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
+    selectedItem = item;
+    try {
+      AsyncStorage.getItem("user_info").then(data => {
+        userObject = JSON.parse(data); // gets info
+        coupons = userObject.coupons.map(el => {
+          //parses coupons
+          let coupon = { ...el };
+          coupon.info = JSON.parse(el.info);
+          return coupon;
         });
-      }
-    });
+        couponToUnFavorite = coupons.find(
+          //coupon to unfavorite
+          coupon => coupon.info.id === selectedItem.id
+        );
+        return this.getToken()
+          .then(token => {
+            if (token) {
+              return fetch(
+                `http://10.113.104.217:3000/coupons/${couponToUnFavorite.id}`,
+                {
+                  method: "DELETE",
+                  headers: {
+                    Authorization: `Bearer ${token}`
+                  }
+                }
+              );
+            }
+          })
+          .then(() => {
+            let updatedCoupons = coupons.filter(
+              coupon => coupon.id !== couponToUnFavorite.id
+            );
+            let stringifyUpdatedCouponsInfo = updatedCoupons.map(el => {
+              let coupon = { ...el };
+              coupon.info = JSON.stringify(el.info);
+              return coupon;
+            });
+            userObject.coupons = stringifyUpdatedCouponsInfo;
+            AsyncStorage.setItem("user_info", JSON.stringify(userObject));
+            let stateCoupons = updatedCoupons.map(coupon => coupon.info);
+            this.setState({
+              coupons: stateCoupons
+            });
+          });
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   render() {

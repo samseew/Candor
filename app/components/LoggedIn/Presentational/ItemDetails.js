@@ -50,7 +50,6 @@ export default class ItemDetails extends Component {
     try {
       AsyncStorage.getItem("user_info").then(data => {
         let userObject = JSON.parse(data);
-        debugger;
         let thisItem = userObject.coupons.find(
           coupon =>
             JSON.parse(coupon.info).id === this.props.navigation.getParam("id")
@@ -59,29 +58,11 @@ export default class ItemDetails extends Component {
           this.setState({
             liked: true
           });
-        } else {
-          //nil
         }
       });
     } catch (error) {
       console.log(error);
     }
-
-    // let allFavorites = [];
-    // this.props.navigation.getParam("user_info").coupons.forEach(coupon => {
-    //   allFavorites.push(JSON.parse(coupon.info));
-    // });
-    // this.props.navigation
-    //   .getParam("itemsFavorited")
-    //   .forEach(item => allFavorites.push(item));
-    // let favorited = allFavorites.find(
-    //   item => item.id === this.props.navigation.getParam("id")
-    // );
-    // if (favorited) {
-    //   this.setState({
-    //     liked: true
-    //   });
-    // }
   };
   render() {
     return (
