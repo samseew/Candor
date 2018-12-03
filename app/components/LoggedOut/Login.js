@@ -25,8 +25,8 @@ export default class Login extends Component {
   constructor() {
     super();
     this.state = {
-      email: "bigboi@yahoo.com",
-      password: "1234",
+      email: "",
+      password: "",
       token: null
     };
   }

@@ -46,7 +46,7 @@ class MainPage extends Component {
     try {
       let token = AsyncStorage.getItem("user_info").then(data => {
         let d = JSON.parse(data);
-        debugger;
+        // debugger;
       });
     } catch (error) {
       console.log(error);
