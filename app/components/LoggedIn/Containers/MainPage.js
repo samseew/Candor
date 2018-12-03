@@ -175,6 +175,7 @@ class MainPage extends Component {
     return (
       <HandleBack onBack={this.onBack}>
         <Drawer
+          styles={{ mainOverlay: 0, zIndex: 1 }}
           ref={ref => {
             this.drawer = ref;
           }}

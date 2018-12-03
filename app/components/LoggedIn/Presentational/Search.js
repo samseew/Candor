@@ -11,7 +11,7 @@ export default class Search extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, zIndex: 0 }}>
         <View style={styles.Search}>
           <View style={styles.inputContainer}>
             <TextInput

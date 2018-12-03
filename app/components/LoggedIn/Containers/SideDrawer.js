@@ -83,6 +83,8 @@ class SideDrawer extends Component {
   }
 
   render() {
+    console.log("side drawer render");
+
     return (
       <Container>
         <Header style={{ height: 150 }}>

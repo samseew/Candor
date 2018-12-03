@@ -149,6 +149,8 @@ export default class FavoriteCoupons extends Component {
   };
 
   render() {
+    console.log("favorite tab render");
+
     if (this.state.isLoading) {
       return (
         <Container>
