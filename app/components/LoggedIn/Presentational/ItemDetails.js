@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image, Linking } from "react-native";
+import { StyleSheet, View, Image, Linking, AsyncStorage } from "react-native";
 import {
   Container,
   Content,
@@ -47,21 +47,40 @@ export default class ItemDetails extends Component {
   };
 
   componentDidMount = () => {
-    let allFavorites = [];
-    this.props.navigation.getParam("user_info").coupons.forEach(coupon => {
-      allFavorites.push(JSON.parse(coupon.info));
-    });
-    this.props.navigation
-      .getParam("itemsFavorited")
-      .forEach(item => allFavorites.push(item));
-    let favorited = allFavorites.find(
-      item => item.id === this.props.navigation.getParam("id")
-    );
-    if (favorited) {
-      this.setState({
-        liked: true
+    try {
+      AsyncStorage.getItem("user_info").then(data => {
+        let userObject = JSON.parse(data);
+        let thisItem = userObject.coupons.find(
+          coupon =>
+            JSON.parse(coupon.info).id === this.props.navigation.getParam("id")
+        );
+        if (thisItem) {
+          this.setState({
+            liked: true
+          });
+        } else {
+          //nil
+        }
       });
+    } catch (error) {
+      console.log(error);
     }
+
+    // let allFavorites = [];
+    // this.props.navigation.getParam("user_info").coupons.forEach(coupon => {
+    //   allFavorites.push(JSON.parse(coupon.info));
+    // });
+    // this.props.navigation
+    //   .getParam("itemsFavorited")
+    //   .forEach(item => allFavorites.push(item));
+    // let favorited = allFavorites.find(
+    //   item => item.id === this.props.navigation.getParam("id")
+    // );
+    // if (favorited) {
+    //   this.setState({
+    //     liked: true
+    //   });
+    // }
   };
   render() {
     return (

@@ -128,9 +128,14 @@ export default class Login extends Component {
       .then(data => {
         if (data.user_info) {
           AsyncStorage.setItem("token", data.token).then(
-            this.props.navigation.navigate("Home", {
-              user_info: data.user_info
-            })
+            AsyncStorage.setItem(
+              "user_info",
+              JSON.stringify(data.user_info)
+            ).then(
+              this.props.navigation.navigate("Home", {
+                user_info: data.user_info
+              })
+            )
           );
         } else {
           Alert.alert("Incorrect Email or Password");

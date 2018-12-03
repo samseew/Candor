@@ -75,8 +75,6 @@ export default class ItemContainer extends Component {
                   id={deal.deal.id}
                   deal={deal.deal}
                   navigation={this.props.navigation}
-                  itemsFavorited={this.props.itemsFavorited}
-                  user_info={this.props.user_info}
                 />
               );
             })}
@@ -95,8 +93,6 @@ export default class ItemContainer extends Component {
                   id={deal.deal.id}
                   deal={deal.deal}
                   navigation={this.props.navigation}
-                  itemsFavorited={this.props.itemsFavorited}
-                  user_info={this.props.user_info}
                 />
               );
             })}

@@ -24,9 +24,7 @@ export default class Item extends Component {
             id: this.props.id,
             item: this.props.deal,
             handleFavorite: this.props.handleFavorite,
-            handleUnFavorite: this.props.handleUnFavorite,
-            itemsFavorited: this.props.itemsFavorited,
-            user_info: this.props.user_info
+            handleUnFavorite: this.props.handleUnFavorite
           })
         }
       >

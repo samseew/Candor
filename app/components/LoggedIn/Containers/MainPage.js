@@ -59,9 +59,16 @@ class MainPage extends Component {
         })
           .then(res => res.json())
           .then(data => {
-            this.setState({
-              itemsFavorited: [...this.state.itemsFavorited, data]
+            selectedItem = data;
+            AsyncStorage.getItem("user_info").then(info => {
+              let userObject = JSON.parse(info);
+              userObject.coupons.push(selectedItem);
+              AsyncStorage.setItem("user_info", JSON.stringify(userObject));
             });
+
+            // this.setState({
+            //   itemsFavorited: [...this.state.itemsFavorited, data]
+            // });
           });
       }
     });
@@ -141,8 +148,6 @@ class MainPage extends Component {
                 handleUnFavorite={this.handleUnFavorite.bind(this)}
                 query={this.state.query}
                 navigation={this.props.navigation}
-                itemsFavorited={this.state.itemsFavorited}
-                user_info={this.state.user_info}
               />
             </View>
           </View>

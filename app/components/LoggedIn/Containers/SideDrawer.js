@@ -39,7 +39,9 @@ class SideDrawer extends Component {
   logOut = async () => {
     try {
       await AsyncStorage.removeItem("token").then(data => {
-        this.props.navigation.navigate("Login");
+        AsyncStorage.removeItem("user_info").then(
+          this.props.navigation.navigate("Login")
+        );
       });
     } catch (error) {
       console.log(error);
