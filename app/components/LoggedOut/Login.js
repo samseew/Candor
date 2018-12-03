@@ -4,9 +4,7 @@ import BackgroundPicture from "../../assets/photo-1524169113253-c6ba17f68498.jpe
 import {
   View,
   Text,
-  Button,
   TextInput,
-  Platform,
   StyleSheet,
   StatusBar,
   TouchableOpacity,
@@ -25,8 +23,8 @@ export default class Login extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: "",
+      email: "bigboi@yahoo.com",
+      password: "1234",
       token: null
     };
   }
@@ -147,6 +145,8 @@ export default class Login extends Component {
   };
 
   render() {
+    console.log("render for Login Called");
+
     return (
       <HandleBack onBack={this.onBack}>
         <ImageBackground

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Search from "../Presentational/Search";
 export default class SearchContainer extends Component {
   render() {

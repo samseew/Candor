@@ -5,14 +5,12 @@ import {
   Button,
   Header,
   Content,
-  List,
   ListItem,
   Text,
   Icon,
   Left,
   Body,
   Right,
-  Switch,
   Footer,
   FooterTab
 } from "native-base";

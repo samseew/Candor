@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  TextInput,
-  Button,
-  TouchableOpacity
-} from "react-native";
+import { StyleSheet, View, TextInput, Button } from "react-native";
 
 export default class Search extends Component {
   constructor() {

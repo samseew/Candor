@@ -190,6 +190,7 @@ export default class FavoriteCoupons extends Component {
             {this.state.coupons.map(coupon => {
               return (
                 <Item
+                  key={coupon.id}
                   id={coupon.id}
                   deal={coupon}
                   navigation={this.props.navigation}

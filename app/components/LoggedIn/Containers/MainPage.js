@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import { fetchData } from "../actions/asyncAction.js";
-import { View, Text, Button, StyleSheet, AsyncStorage } from "react-native";
+import { View, StyleSheet, AsyncStorage } from "react-native";
 import HandleBack from "../../../HandleBack";
 import NavContainer from "./NavContainer";
 import SearchContainer from "./SearchContainer";
 import ItemContainer from "./ItemContainer";
-import { Drawer, Container } from "native-base";
+import { Drawer } from "native-base";
 import SideDrawer from "./SideDrawer";
+const Key = "OvTrWbUT";
+const dealsURL = "https://api.discountapi.com/v2/deals";
 class MainPage extends Component {
   // drawer brightness bug = change elevation to 0
   //nativebase/dist/src/basic/Drawer/index.js
@@ -21,7 +23,7 @@ class MainPage extends Component {
     super(props);
     this.state = {
       query: null,
-      itemsFavorited: [],
+      items: [],
       nearMe: false
     };
   }
@@ -43,14 +45,23 @@ class MainPage extends Component {
   };
 
   componentDidMount() {
-    try {
-      let token = AsyncStorage.getItem("user_info").then(data => {
-        let d = JSON.parse(data);
-        // debugger;
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   let token = AsyncStorage.getItem("user_info").then(data => {
+    //     let d = JSON.parse(data);
+    //     // debugger;
+    //   });
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    fetch(dealsURL, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        api_key: Key
+      }
+    })
+      .then(res => res.json())
+      .then(data => this.setState({ items: data.deals }));
   }
 
   handleFavorite = item => {
@@ -140,9 +151,17 @@ class MainPage extends Component {
   };
 
   handleSearch = term => {
-    this.setState({
-      query: term
-    });
+    fetch(dealsURL + `?query=${term}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        api_key: Key
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ items: data.deals, query: term });
+      });
   };
   closeDrawer = () => {
     this.drawer._root.close();
@@ -151,6 +170,8 @@ class MainPage extends Component {
     this.drawer._root.open();
   };
   render() {
+    console.log("main container rendered");
+
     return (
       <HandleBack onBack={this.onBack}>
         <Drawer
@@ -181,7 +202,7 @@ class MainPage extends Component {
               <ItemContainer
                 handleFavorite={this.handleFavorite}
                 handleUnFavorite={this.handleUnFavorite.bind(this)}
-                query={this.state.query}
+                items={this.state.items}
                 navigation={this.props.navigation}
               />
             </View>

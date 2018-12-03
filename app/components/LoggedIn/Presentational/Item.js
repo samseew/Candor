@@ -1,22 +1,11 @@
 import React, { Component } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import {
-  Container,
-  Header,
-  Content,
-  Card,
-  CardItem,
-  Thumbnail,
-  Text,
-  Button,
-  Icon,
-  Left,
-  Body,
-  Right
-} from "native-base";
+import { Card, CardItem, Thumbnail, Text, Left, Body } from "native-base";
 
 export default class Item extends Component {
   render() {
+    console.log("item render for", this.props.id);
+
     return (
       <TouchableOpacity
         onPress={() =>

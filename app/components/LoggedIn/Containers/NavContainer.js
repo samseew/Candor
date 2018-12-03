@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import { fetchData } from "../actions/asyncAction.js";
 import { View, Text, TouchableOpacity, StyleSheet, Switch } from "react-native";
-import { Icon, Button } from "native-base";
+import { Icon } from "native-base";
 import Logo from "../../LoggedOut/Logo.js";
 
 class DrawerContainer extends Component {

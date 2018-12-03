@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { Container, Content, Text } from "native-base";
 
 export default class AdvancedSearch extends Component {

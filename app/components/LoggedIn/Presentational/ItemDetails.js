@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image, Linking, AsyncStorage } from "react-native";
+import { StyleSheet, View, Linking, AsyncStorage } from "react-native";
 import {
   Container,
   Content,
@@ -9,10 +9,6 @@ import {
   Button,
   Icon,
   Left,
-  H1,
-  H2,
-  H3,
-  Col,
   Row,
   Grid,
   Thumbnail,
