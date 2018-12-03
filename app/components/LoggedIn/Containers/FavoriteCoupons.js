@@ -46,23 +46,36 @@ export default class FavoriteCoupons extends Component {
     }
   };
   componentDidMount() {
-    return this.getToken().then(token => {
-      if (token) {
-        return fetch("http://10.113.104.217:3000/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
-          .then(res => res.json())
-          .then(data => {
-            parsedCoupons = data.user.coupons.map(el => JSON.parse(el.info));
-            this.setState({
-              coupons: parsedCoupons,
-              isLoading: false
-            });
-          });
-      }
-    });
+    try {
+      AsyncStorage.getItem("user_info").then(data => {
+        let userObject = JSON.parse(data);
+        let parsedCoupons = userObject.coupons.map(el => JSON.parse(el.info));
+        this.setState({
+          coupons: parsedCoupons,
+          isLoading: false
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
+    // return this.getToken().then(token => {
+    //   if (token) {
+    //     return fetch("http://10.113.104.217:3000/profile", {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`
+    //       }
+    //     })
+    //       .then(res => res.json())
+    //       .then(data => {
+    //         parsedCoupons = data.user.coupons.map(el => JSON.parse(el.info));
+    //         this.setState({
+    //           coupons: parsedCoupons,
+    //           isLoading: false
+    //         });
+    //       });
+    //   }
+    // });
   }
 
   getToken = async () => {
@@ -170,10 +183,6 @@ export default class FavoriteCoupons extends Component {
                   navigation={this.props.navigation}
                   handleFavorite={this.handleFavorite.bind(this)}
                   handleUnFavorite={this.handleUnFavorite.bind(this)}
-                  itemsFavorited={this.props.navigation.getParam(
-                    "itemsFavorited"
-                  )}
-                  user_info={this.props.navigation.getParam("user_info")}
                 />
               );
             })}

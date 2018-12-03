@@ -50,6 +50,7 @@ export default class ItemDetails extends Component {
     try {
       AsyncStorage.getItem("user_info").then(data => {
         let userObject = JSON.parse(data);
+        debugger;
         let thisItem = userObject.coupons.find(
           coupon =>
             JSON.parse(coupon.info).id === this.props.navigation.getParam("id")

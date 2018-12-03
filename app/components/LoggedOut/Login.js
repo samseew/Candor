@@ -93,9 +93,7 @@ export default class Login extends Component {
             })
               .then(res => res.json())
               .then(data => {
-                this.props.navigation.navigate("Home", {
-                  user_info: data.user
-                });
+                this.props.navigation.navigate("Home");
               });
           }
         });
@@ -127,15 +125,12 @@ export default class Login extends Component {
       .then(res => res.json())
       .then(data => {
         if (data.user_info) {
+          debugger;
           AsyncStorage.setItem("token", data.token).then(
             AsyncStorage.setItem(
               "user_info",
               JSON.stringify(data.user_info)
-            ).then(
-              this.props.navigation.navigate("Home", {
-                user_info: data.user_info
-              })
-            )
+            ).then(this.props.navigation.navigate("Home"))
           );
         } else {
           Alert.alert("Incorrect Email or Password");

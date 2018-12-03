@@ -20,7 +20,6 @@ class MainPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_info: this.props.navigation.getParam("user_info"),
       query: null,
       itemsFavorited: [],
       nearMe: false
@@ -42,6 +41,17 @@ class MainPage extends Component {
       console.log(error);
     }
   };
+
+  componentDidMount() {
+    try {
+      let token = AsyncStorage.getItem("user_info").then(data => {
+        let d = JSON.parse(data);
+        debugger;
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   handleFavorite = item => {
     return this.getToken().then(token => {
@@ -122,8 +132,6 @@ class MainPage extends Component {
           }}
           content={
             <SideDrawer
-              user_info={this.state.user_info}
-              itemsFavorited={this.state.itemsFavorited}
               navigator={this.navigator}
               navigation={this.props.navigation}
             />

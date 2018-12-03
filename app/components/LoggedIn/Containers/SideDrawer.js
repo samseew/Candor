@@ -32,7 +32,8 @@ class SideDrawer extends Component {
   constructor() {
     super();
     this.state = {
-      facebook: false
+      facebook: false,
+      name: null
     };
   }
 
@@ -72,6 +73,12 @@ class SideDrawer extends Component {
           });
         }
       });
+      AsyncStorage.getItem("user_info").then(data => {
+        let userObject = JSON.parse(data);
+        this.setState({
+          name: userObject.name
+        });
+      });
     } catch (error) {
       console.log(error);
     }
@@ -86,7 +93,7 @@ class SideDrawer extends Component {
           </Body>
           <Right>
             <Text style={styles.welcome}>
-              Welcome {"\n"} {this.props.user_info.name}
+              Welcome {"\n"} {this.state.name}
             </Text>
           </Right>
         </Header>
@@ -95,9 +102,7 @@ class SideDrawer extends Component {
             icon
             onPress={() =>
               this.props.navigation.navigate("FavoriteCoupons", {
-                navigaton: this.props.navigation,
-                itemsFavorited: this.props.itemsFavorited,
-                user_info: this.props.user_info
+                navigaton: this.props.navigation
               })
             }
           >
