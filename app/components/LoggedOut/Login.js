@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import HandleBack from "../../HandleBack";
 import { LoginButton, AccessToken } from "react-native-fbsdk";
+import { RailsURL } from "../../fetch";
 
 export default class Login extends Component {
   static navigationOptions = {
@@ -64,7 +65,7 @@ export default class Login extends Component {
         )
           .then(res => res.json())
           .then(data => {
-            fetch("http://10.113.104.217:3000/facebook", {
+            fetch(`${RailsURL}/facebook`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json"
@@ -84,7 +85,7 @@ export default class Login extends Component {
       } else {
         let promise = this.getToken().then(token => {
           if (token) {
-            return fetch("http://10.113.104.217:3000/profile", {
+            return fetch(`${RailsURL}/profile`, {
               headers: {
                 Authorization: `Bearer ${token}`
               }
@@ -110,7 +111,7 @@ export default class Login extends Component {
   handleLoginSubmit = () => {
     // you must use your ip address
     //instead of localhost, as it interferes with your emulator
-    return fetch("http://10.113.104.217:3000/login", {
+    return fetch(`${RailsURL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -198,7 +199,7 @@ export default class Login extends Component {
                         )
                           .then(res => res.json())
                           .then(data => {
-                            fetch("http://10.113.104.217:3000/facebook", {
+                            fetch(`${RailsURL}/facebook`, {
                               method: "POST",
                               headers: {
                                 "Content-Type": "application/json"
