@@ -189,9 +189,7 @@ const styles = StyleSheet.create({
     borderColor: "red"
   },
   description: {
-    marginTop: 10,
-    borderWidth: 1,
-    borderColor: "gray"
+    marginTop: 10
   },
   title: {
     fontSize: 20

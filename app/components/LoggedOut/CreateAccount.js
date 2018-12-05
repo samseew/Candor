@@ -60,9 +60,8 @@ export default class CreateAccount extends Component {
             .then(res => res.json())
             .then(data => {
               AsyncStorage.setItem("token", data.token);
-              this.props.navigation.navigate("Home", {
-                user_info: data.user_info
-              });
+              AsyncStorage.setItem("user_info", JSON.stringify(data.user_info));
+              this.props.navigation.navigate("Home");
             })
             .catch(error => {
               console.error(error);
