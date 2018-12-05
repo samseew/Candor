@@ -8,6 +8,7 @@ import SearchContainer from "./SearchContainer";
 import ItemContainer from "./ItemContainer";
 import { Drawer } from "native-base";
 import SideDrawer from "./SideDrawer";
+import { RailsURL } from "../../../fetch";
 const Key = "OvTrWbUT";
 const dealsURL = "https://api.discountapi.com/v2/deals";
 class MainPage extends Component {
@@ -67,7 +68,7 @@ class MainPage extends Component {
   handleFavorite = item => {
     return this.getToken().then(token => {
       if (token) {
-        return fetch("http://10.113.104.217:3000/coupons", {
+        return fetch(`${RailsURL}/coupons`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -113,15 +114,12 @@ class MainPage extends Component {
         return this.getToken()
           .then(token => {
             if (token) {
-              return fetch(
-                `http://10.113.104.217:3000/coupons/${couponToUnFavorite.id}`,
-                {
-                  method: "DELETE",
-                  headers: {
-                    Authorization: `Bearer ${token}`
-                  }
+              return fetch(`${RailsURL}/coupons/${couponToUnFavorite.id}`, {
+                method: "DELETE",
+                headers: {
+                  Authorization: `Bearer ${token}`
                 }
-              );
+              });
             }
           })
           .then(() => {

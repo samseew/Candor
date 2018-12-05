@@ -10,6 +10,7 @@ import {
   Input,
   Label
 } from "native-base";
+import { RailsURL } from "../../fetch";
 export default class CreateAccount extends Component {
   static navigationOptions = {
     title: "Sign Up"
@@ -33,7 +34,7 @@ export default class CreateAccount extends Component {
       info.name.length > 0
     ) {
       // create account
-      fetch("http://10.113.104.217:3000/users/", {
+      fetch(`${RailsURL}/users/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -46,7 +47,7 @@ export default class CreateAccount extends Component {
       })
         .then(res => res.json())
         .then(data => {
-          return fetch("http://10.113.104.217:3000/login", {
+          return fetch(`${RailsURL}/login`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -59,9 +60,8 @@ export default class CreateAccount extends Component {
             .then(res => res.json())
             .then(data => {
               AsyncStorage.setItem("token", data.token);
-              this.props.navigation.navigate("Home", {
-                user_info: data.user_info
-              });
+              AsyncStorage.setItem("user_info", JSON.stringify(data.user_info));
+              this.props.navigation.navigate("Home");
             })
             .catch(error => {
               console.error(error);

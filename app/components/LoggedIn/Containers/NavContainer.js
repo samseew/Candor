@@ -30,11 +30,11 @@ class DrawerContainer extends Component {
           </View>
         </View>
         <View>
-          <Text>Near Me</Text>
+          {/* <Text>Near Me</Text>
           <Switch
             onValueChange={() => this.props.handleNearMeSwitch()}
             value={this.props.nearMe}
-          />
+          /> */}
         </View>
         {/* <Button
           transparent

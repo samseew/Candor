@@ -23,6 +23,7 @@ import {
   Body,
   Spinner
 } from "native-base";
+import { RailsURL } from "../../../fetch";
 export default class FavoriteCoupons extends Component {
   static navigationOptions = {
     header: null
@@ -63,7 +64,7 @@ export default class FavoriteCoupons extends Component {
   handleFavorite = item => {
     return this.getToken().then(token => {
       if (token) {
-        return fetch("http://10.113.104.217:3000/coupons", {
+        return fetch(`${RailsURL}/coupons`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -115,15 +116,12 @@ export default class FavoriteCoupons extends Component {
         return this.getToken()
           .then(token => {
             if (token) {
-              return fetch(
-                `http://10.113.104.217:3000/coupons/${couponToUnFavorite.id}`,
-                {
-                  method: "DELETE",
-                  headers: {
-                    Authorization: `Bearer ${token}`
-                  }
+              return fetch(`${RailsURL}/coupons/${couponToUnFavorite.id}`, {
+                method: "DELETE",
+                headers: {
+                  Authorization: `Bearer ${token}`
                 }
-              );
+              });
             }
           })
           .then(() => {
