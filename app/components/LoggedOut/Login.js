@@ -124,7 +124,6 @@ export default class Login extends Component {
       .then(res => res.json())
       .then(data => {
         if (data.user_info) {
-          debugger;
           AsyncStorage.setItem("token", data.token).then(
             AsyncStorage.setItem(
               "user_info",
@@ -211,9 +210,8 @@ export default class Login extends Component {
                             })
                               .then(res => res.json())
                               .then(data => {
-                                this.props.navigation.navigate("Home", {
-                                  user_info: data.user
-                                });
+                                AsyncStorage.setItem("user_info", data.user);
+                                this.props.navigation.navigate("Home");
                               });
                           });
                       });

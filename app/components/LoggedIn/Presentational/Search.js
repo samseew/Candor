@@ -17,7 +17,7 @@ export default class Search extends Component {
             <TextInput
               onChangeText={text => this.setState({ searchTerm: text })}
               style={styles.Input}
-              placeholder="Search Coupons"
+              placeholder="Search Discounts"
               placeholderTextColor="black"
               value={this.state.searchTerm}
               onSubmitEditing={() =>
