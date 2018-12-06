@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="./readmepics/login.png" >
+  <img src="./readmepics/login.png" width="200" height="350" >
   <br>
 CANDOR  
 <br>
@@ -83,7 +83,7 @@ $ react-native run-android
 
 <h3 align="center">
 Login   <br>
-  <img src="./readmepics/login.png" >
+  <img src="./readmepics/login.png" width="200" height="350" >
   <br>
 <br>
 </h3>
@@ -91,14 +91,14 @@ Login   <br>
 
 <h3 align="center">
 Login Fail  <br>
-  <img src="./readmepics/loginfail.png" >
+  <img src="./readmepics/loginfail.png" width="200" height="350" >
   <br>
 <br>
 </h3>
 
 <h3 align="center">
 Sign Up  <br>
-  <img src="./readmepics/signup.png" >
+  <img src="./readmepics/signup.png" width="200" height="350" >
   <br>
 <br>
 </h3>
@@ -106,14 +106,14 @@ Sign Up  <br>
 
 <h3 align="center">
 Sign Up Fail  <br>
-  <img src="./readmepics/signupfail.png" >
+  <img src="./readmepics/signupfail.png" width="200" height="350" >
   <br>
 <br>
 </h3>
 
 <h3 align="center">
 Main Page After Login <br>
-  <img src="./readmepics/main.png" >
+  <img src="./readmepics/main.png" width="200" height="350" >
   <br>
 <br>
 </h3>
@@ -121,7 +121,7 @@ Main Page After Login <br>
 
 <h3 align="center">
 Drawer <br>
-  <img src="./readmepics/drawer.png" >
+  <img src="./readmepics/drawer.png" width="200" height="350" >
   <br>
 <br>
 </h3>
@@ -129,7 +129,7 @@ Drawer <br>
 
 <h3 align="center">
 Search For A Discount <br>
-  <img src="./readmepics/search.png" >
+  <img src="./readmepics/search.png" width="200" height="350" >
   <br>
 <br>
 </h3>
@@ -137,7 +137,7 @@ Search For A Discount <br>
 
 <h3 align="center">
 View Page For Discount <br>
-  <img src="./readmepics/details.png" >
+  <img src="./readmepics/details.png" width="200" height="350" >
   <br>
 <br>
 </h3>
@@ -145,7 +145,7 @@ View Page For Discount <br>
 
 <h3 align="center">
 Favorite The Discount <br>
-  <img src="./readmepics/favorite.png" >
+  <img src="./readmepics/favorite.png" width="200" height="350" >
   <br>
 <br>
 </h3>
@@ -153,7 +153,7 @@ Favorite The Discount <br>
 
 <h3 align="center">
 Favorites Saved in Your Favorites Tab <br>
-  <img src="./readmepics/favorites.png" >
+  <img src="./readmepics/favorites.png" width="200" height="350" >
   <br>
 <br>
 </h3>
@@ -161,7 +161,7 @@ Favorites Saved in Your Favorites Tab <br>
 
 <h3 align="center">
 Facebook Sign In <br>
-  <img src="./readmepics/facebook.png" >
+  <img src="./readmepics/facebook.png" width="200" height="350" >
   <br>
 <br>
 </h3>
