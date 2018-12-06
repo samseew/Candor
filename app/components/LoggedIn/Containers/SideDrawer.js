@@ -73,7 +73,6 @@ class SideDrawer extends Component {
       });
       AsyncStorage.getItem("user_info").then(data => {
         let userObject = JSON.parse(data);
-        debugger;
         this.setState({
           name: userObject.name
         });
