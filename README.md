@@ -15,6 +15,8 @@ CANDOR
   <a href="#images">Images</a> •
 </p>
 
+<a href="https://youtu.be/HK5BInpp70w">Watch The Demo Video!</a>
+
 ## Key Features
 
 - Login
