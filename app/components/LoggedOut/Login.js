@@ -189,7 +189,9 @@ export default class Login extends Component {
                       console.log("login is cancelled.");
                     } else {
                       AccessToken.getCurrentAccessToken().then(data => {
-                        AsyncStorage.setItem("fbToken", data.accessToken);
+                        AsyncStorage.setItem("fbToken", data.accessToken).then(
+                          AsyncStorage.setItem("token", data.accessToken)
+                        );
 
                         return fetch(
                           `https://graph.facebook.com/v3.2/me?fields=id,name&access_token=${
@@ -210,8 +212,11 @@ export default class Login extends Component {
                             })
                               .then(res => res.json())
                               .then(data => {
-                                AsyncStorage.setItem("user_info", data.user);
-                                this.props.navigation.navigate("Home");
+                                debugger;
+                                AsyncStorage.setItem(
+                                  "user_info",
+                                  JSON.stringify(data.user)
+                                ).then(this.props.navigation.navigate("Home"));
                               });
                           });
                       });

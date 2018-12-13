@@ -50,6 +50,8 @@ class SideDrawer extends Component {
   fbLogOut = async () => {
     try {
       await AsyncStorage.removeItem("fbToken").then(data => {
+        AsyncStorage.removeItem("token");
+        AsyncStorage.removeItem("user_info");
         LoginManager.logOut();
         this.props.navigation.navigate("Login");
       });
@@ -60,14 +62,14 @@ class SideDrawer extends Component {
 
   componentDidMount() {
     try {
-      AsyncStorage.getItem("token").then(data => {
+      AsyncStorage.getItem("fbToken").then(data => {
         if (data) {
           this.setState({
-            facebook: false
+            facebook: true
           });
         } else {
           this.setState({
-            facebook: true
+            facebook: false
           });
         }
       });

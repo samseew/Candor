@@ -6,9 +6,7 @@ import { Icon } from "native-base";
 import Logo from "../../LoggedOut/Logo.js";
 
 class DrawerContainer extends Component {
-  componentDidMount() {
-    // this.props.fetchData();
-  }
+  componentDidMount() {}
 
   render() {
     return (
@@ -29,19 +27,7 @@ class DrawerContainer extends Component {
             <Logo />
           </View>
         </View>
-        <View>
-          {/* <Text>Near Me</Text>
-          <Switch
-            onValueChange={() => this.props.handleNearMeSwitch()}
-            value={this.props.nearMe}
-          /> */}
-        </View>
-        {/* <Button
-          transparent
-          onPress={() => this.props.navigation.navigate("AdvancedSearch")}
-        >
-          <Icon name="search" />
-        </Button> */}
+        <View />
       </View>
     );
   }
@@ -58,14 +44,7 @@ const styles = StyleSheet.create({
   TitleBox: {
     flex: 9,
     alignItems: "center",
-    right: "20%"
+    right: "40%"
   },
   Logo: {}
 });
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchData: () => {
-//       dispatch(fetchData());
-//     }
-//   };
-// };
