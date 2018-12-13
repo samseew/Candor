@@ -89,10 +89,6 @@ export default class FavoriteCoupons extends Component {
                 coupons: parsedCoupons
               });
             });
-
-            // this.setState({
-            //   itemsFavorited: [...this.state.itemsFavorited, data]
-            // });
           });
       }
     });
@@ -127,7 +123,7 @@ export default class FavoriteCoupons extends Component {
           .then(() => {
             let updatedCoupons = coupons.filter(
               coupon => coupon.id !== couponToUnFavorite.id
-            );
+            ); // standardize the format for saving
             let stringifyUpdatedCouponsInfo = updatedCoupons.map(el => {
               let coupon = { ...el };
               coupon.info = JSON.stringify(el.info);

@@ -3,7 +3,7 @@ import { StyleSheet, View, ActivityIndicator } from "react-native";
 import Item from "../Presentational/Item";
 import { Container, Content } from "native-base";
 
-const Key = "OvTrWbUT";
+const Key = "OvTrWbUT"; // discount api
 const dealsURL = "https://api.discountapi.com/v2/deals";
 
 //  example Api Call - query, location (latitude, longitude), results per page and page number

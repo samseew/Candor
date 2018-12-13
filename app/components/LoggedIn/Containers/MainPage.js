@@ -46,14 +46,6 @@ class MainPage extends Component {
   };
 
   componentDidMount() {
-    // try {
-    //   let token = AsyncStorage.getItem("user_info").then(data => {
-    //     let d = JSON.parse(data);
-    //     // debugger;
-    //   });
-    // } catch (error) {
-    //   console.log(error);
-    // }
     fetch(dealsURL, {
       method: "GET",
       headers: {
@@ -87,10 +79,6 @@ class MainPage extends Component {
               userObject.coupons.push(selectedItem);
               AsyncStorage.setItem("user_info", JSON.stringify(userObject));
             });
-
-            // this.setState({
-            //   itemsFavorited: [...this.state.itemsFavorited, data]
-            // });
           });
       }
     });
@@ -228,11 +216,3 @@ const styles = StyleSheet.create({
     flex: 10
   }
 });
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchData: () => {
-//       dispatch(fetchData());
-//     }
-//   };
-// };
